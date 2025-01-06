@@ -48,6 +48,7 @@ export interface ValueObjectConstructore<
 	name: GenericName;
 	zodSchema: GenericZodType;
 	create(value: unknown): ValueObject<GenericName, zodInfer<GenericZodType>> | ValueObjectError<GenericName>;
+	createOrThrow(value: zodInfer<GenericZodType>): ValueObject<GenericName, zodInfer<GenericZodType>>;
 }
 
 export function createValueObject<
@@ -64,7 +65,16 @@ export function createValueObject<
 		name,
 		zodSchema,
 		create(value) {
-			return <never>ValueObject.initialization(name, zodSchema, value);
+			return ValueObject.initialization(name, zodSchema, value);
+		},
+		createOrThrow(value) {
+			const valueObject = ValueObject.initialization(name, zodSchema, value);
+
+			if (valueObject instanceof ValueObjectError) {
+				throw valueObject;
+			}
+
+			return valueObject;
 		},
 	};
 }
