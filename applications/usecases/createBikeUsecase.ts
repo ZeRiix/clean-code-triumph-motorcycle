@@ -2,64 +2,52 @@ import { BikeEntity } from "domains/entities/bikeEntity";
 
 import type { BikeRepository } from "applications/interfaces/repositories/bikeRepository";
 
-import { RegistrationBikeType } from "domains/types/bike/registrationBikeType";
-import { YearBikeType } from "domains/types/bike/yearBikeType";
-import { TypeBikeType } from "domains/types/bike/typeBikeType";
-import { MileageBikeType } from "domains/types/bike/mileageBikeType";
-import { PurchaseDateBikeType } from "domains/types/bike/purchaseDateBikeType";
+import { checkValueObjects } from "domains/types";
+import { factoryYearBikeType, mileageBikeType, purchaseDateBikeType, registrationBikeType, typeBikeType } from "domains/types/bike";
 
 export class CreateBikeUsecase {
-    public constructor(
-        private readonly bikeRepository: BikeRepository,
-    ) {}
+	public static async execute(
+		dependence: {
+			bikeRepository: BikeRepository;
+		},
+		params: {
+			registration: string;
+			factoryYearBike: number;
+			typeBike: string;
+			mileageBike: number;
+			purchaseDate: Date;
+			model: string | null;
+		},
+	) {
+		const { success, data, error } = checkValueObjects({
+			registrationBike: registrationBikeType.create(params.registration),
+			factoryYearBike: factoryYearBikeType.create(params.factoryYearBike),
+			typeBike: typeBikeType.create(params.typeBike),
+			mileageBike: mileageBikeType.create(params.mileageBike),
+			purchaseDateBike: purchaseDateBikeType.create(params.purchaseDate),
+		});
 
-    public async execute(
-        registration: string,
-        year: number,
-        type: string,
-        mileage: number,
-        purchaseDate: Date,
-        model?: string,
-    ) {
-        const registrationBike = RegistrationBikeType.from(registration);
+		if (!success) {
+			return error;
+		}
 
-        if (registrationBike instanceof Error) {
-            throw registrationBike;
-        }
+		const {
+			registrationBike,
+			factoryYearBike,
+			typeBike,
+			mileageBike,
+			purchaseDateBike,
+		} = data;
 
-        const yearBike = YearBikeType.from(year);
+		const bike = BikeEntity.create({
+			registration: registrationBike,
+			factoryYear: factoryYearBike,
+			type: typeBike,
+			mileage: mileageBike,
+			purchaseDate: purchaseDateBike,
+			model: params.model,
+		});
 
-        if (yearBike instanceof Error) {
-            throw yearBike;
-        }
-
-        const typeBike = TypeBikeType.from(type);
-
-        if (typeBike instanceof Error) {
-            throw typeBike;
-        }
-
-        const mileageBike = MileageBikeType.from(mileage);
-
-        if (mileageBike instanceof Error) {
-            throw mileageBike;
-        }
-
-        const purchaseDateBike = PurchaseDateBikeType.from(purchaseDate, year);
-
-        if (purchaseDateBike instanceof Error) {
-            throw purchaseDateBike;
-        }
-
-        const bike = BikeEntity.create({
-            registration: registrationBike,
-            year: yearBike,
-            type: typeBike,
-            mileage: mileageBike,
-            purchaseDate: purchaseDateBike,
-            model,
-        });
-
-        await this.bikeRepository.create(bike.definition);
-    }
+		await dependence.bikeRepository.create(bike);
+	}
 }

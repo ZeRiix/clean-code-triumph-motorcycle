@@ -1,10 +1,10 @@
-import { type ZodBranded, type ZodType, type infer as zodInfer } from "zod";
+import { object, type ZodBranded, type ZodType, type infer as zodInfer } from "zod";
 
 export class ValueObjectError<
 	GenericName extends string,
 > extends Error {
 	public constructor(
-		public name: GenericName,
+		public readonly name: GenericName,
 		message: string,
 	) {
 		super(message);
@@ -16,8 +16,8 @@ export class ValueObject<
 	GenericValue extends unknown,
 > {
 	private constructor(
-		public name: GenericName,
-		public value: GenericValue,
+		public readonly name: GenericName,
+		public readonly value: GenericValue,
 	) {}
 
 	public static initialization<
@@ -43,11 +43,11 @@ export class ValueObject<
 
 export interface ValueObjectConstructore<
 	GenericName extends string,
-	GenericZodBranded extends ZodBranded<ZodType, GenericName>,
+	GenericZodType extends ZodType,
 > {
 	name: GenericName;
-	zodSchema: GenericZodBranded;
-	create(value: unknown): ValueObject<zodInfer<GenericZodBranded>, GenericName> | ValueObjectError<GenericName>;
+	zodSchema: GenericZodType;
+	create(value: unknown): ValueObject<GenericName, zodInfer<GenericZodType>> | ValueObjectError<GenericName>;
 }
 
 export function createValueObject<
@@ -58,15 +58,13 @@ export function createValueObject<
 	zodSchema: GenericZodType,
 ): ValueObjectConstructore<
 		GenericName,
-		ZodBranded<GenericZodType, GenericName>
+		GenericZodType
 	> {
-	const brandedZodSchema = zodSchema.brand(name);
-
 	return {
 		name,
-		zodSchema: brandedZodSchema,
+		zodSchema,
 		create(value) {
-			return <never>ValueObject.initialization(name, brandedZodSchema, value);
+			return <never>ValueObject.initialization(name, zodSchema, value);
 		},
 	};
 }
@@ -77,3 +75,49 @@ export type GetValueObject<
 	ReturnType<GenericValueObjectConstructore["create"]>,
 	ValueObject<any, any>
 >;
+
+export type WrapperValueObjects = Record<string, ValueObject<any, any> | ValueObjectError<any>>;
+
+export type CheckReturnType<
+	GenericWrapperValueObjects extends WrapperValueObjects,
+> = {
+	success: false;
+	data: undefined;
+	error: Extract<
+		GenericWrapperValueObjects[keyof GenericWrapperValueObjects],
+		ValueObjectError<any>
+	>;
+} | {
+	success: true;
+	data: {
+		[Prop in keyof GenericWrapperValueObjects]: Extract<
+			GenericWrapperValueObjects[Prop],
+			ValueObject<any, any>
+		>
+	};
+	error: undefined;
+};
+
+export function checkValueObjects<
+	GenericWrapperValueObjects extends WrapperValueObjects,
+>(valuesObjects: GenericWrapperValueObjects): CheckReturnType<GenericWrapperValueObjects> {
+	const valueObjectError = Object
+		.values(valuesObjects)
+		.find(
+			(resultValueObject) => resultValueObject instanceof ValueObjectError,
+		);
+
+	return <never>(
+		valueObjectError
+			? {
+				success: false,
+				data: undefined,
+				error: valueObjectError,
+			}
+			: {
+				success: true,
+				data: valuesObjects,
+				error: undefined,
+			}
+	);
+}

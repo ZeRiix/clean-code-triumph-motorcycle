@@ -1,9 +1,10 @@
-import type { BikeDefinition } from "domains/entities/bikeEntity";
+import { type BikeEntity } from "domains/entities/bikeEntity";
+import { type RegistrationBike } from "domains/types/bike";
 
 export interface BikeRepository {
-    create(bike: BikeDefinition): Promise<void>;
-    update(bike: BikeDefinition): Promise<void>;
-    delete(bike: BikeDefinition): Promise<void>;
-    get(bikeId: string): Promise<BikeDefinition>;
-    getAll(): Promise<BikeDefinition[]>;
+	create(bike: BikeEntity): Promise<void>;
+	update(bike: BikeEntity): Promise<void>;
+	delete(bike: BikeEntity): Promise<void>;
+
+	getByRegistration(registrationBick: RegistrationBike): Promise<BikeEntity>;
 }
