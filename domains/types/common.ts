@@ -14,3 +14,9 @@ export const fullNameType = createValueObject(
 );
 export type FullName = GetValueObject<typeof fullNameType>;
 
+export const passedDateType = createValueObject(
+	"PassedDate",
+	z.date().refine((date) => date < new Date()),
+);
+export type PassedDateType = GetValueObject<typeof passedDateType>;
+
