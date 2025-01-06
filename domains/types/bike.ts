@@ -25,9 +25,10 @@ export const purchaseDateBikeType = createValueObject(
 );
 export type PurchaseDateBike = GetValueObject<typeof purchaseDateBikeType>;
 
+const REGISTRATION_BIKE_PATERNE = /^[A-Z]{2}-\d{3}-[A-Z]{2}/;
 export const registrationBikeType = createValueObject(
 	"RegistrationBike",
-	z.string().regex(/^[A-Z]{2}-\d{3}-[A-Z]{2}/),
+	z.string().regex(REGISTRATION_BIKE_PATERNE),
 );
 export type RegistrationBike = GetValueObject<typeof registrationBikeType>;
 

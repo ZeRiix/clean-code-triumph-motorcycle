@@ -1,4 +1,4 @@
-import { object, type ZodBranded, type ZodType, type infer as zodInfer } from "zod";
+import { type ZodType, type infer as zodInfer } from "zod";
 
 export class ValueObjectError<
 	GenericName extends string,
