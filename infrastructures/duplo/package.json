@@ -1,0 +1,10 @@
+{
+  "name": "duplo",
+  "dependencies": {
+    "@duplojs/core": "^0.21.0",
+    "@duplojs/node": "^0.3.0"
+  },
+  "devDependencies": {
+    "tsx": "^4.19.2"
+  }
+}
