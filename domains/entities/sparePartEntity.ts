@@ -1,39 +1,44 @@
 /*
- * Justification: Spare parts are essential for maintenance. Managing 
- *     inventory, alerts, and order history is a crucial business 
+ * Justification: Spare parts are essential for maintenance. Managing
+ *     inventory, alerts, and order history is a crucial business
  *     functionality.
 */
-import type { PartReferenceType } from "domains/types/sparePart/partReferenceType";
-import { StockQuantityType } from "domains/types/stock/quantityStockType";
-import type { ReorderLevelType } from "domains/types/sparePart/reorderLevelType";
-import type { UnitPriceType } from "domains/types/sparePart/unitPriceType";
+
+import {
+	type ReorderLevel,
+	type PartReference,
+	type UnitPrice,
+} from "domains/types/sparePart";
+import { quantityStockType, type QuantityStock } from "domains/types/stock";
 
 const DEFAULT_STOCK = 0;
 
 export interface SparePartDefinition {
-    reference: PartReferenceType; // sku
-    name: string; // piece name
-    stock: StockQuantityType;
-    reorderLevel: ReorderLevelType;
-    unitPriceTTC?: UnitPriceType;
+	reference: PartReference;
+	name: string;
+	stock: QuantityStock;
+	reorderLevel: ReorderLevel;
+	unitPriceTTC?: UnitPrice;
 }
 
 export class SparePartEntity {
-    private constructor(
-        public readonly definition: SparePartDefinition,
-    ) { }
+	public static defaultStock = quantityStockType.createOrThrow(DEFAULT_STOCK);
 
-    public static create(definition: SparePartDefinition): SparePartEntity {
-        return new SparePartEntity({
-            ...definition,
-            stock: definition.stock || StockQuantityType.from(DEFAULT_STOCK),
-        });
-    }
+	private constructor(
+		public readonly definition: SparePartDefinition,
+	) { }
 
-    public updateStock(quantity: StockQuantityType): SparePartEntity {
-        return new SparePartEntity({
-            ...this.definition,
-            stock: quantity,
-        });
-    }
+	public static create(definition: SparePartDefinition): SparePartEntity {
+		return new SparePartEntity({
+			...definition,
+			stock: definition.stock || this.defaultStock,
+		});
+	}
+
+	public updateStock(quantity: QuantityStock): SparePartEntity {
+		return new SparePartEntity({
+			...this.definition,
+			stock: quantity,
+		});
+	}
 }

@@ -1,49 +1,50 @@
 /*
- * Justification: Automatic reminders and alerts (interviews to schedule, 
- *      critical stock thresholds) require a business entity to manage 
+ * Justification: Automatic reminders and alerts (interviews to schedule,
+ *      critical stock thresholds) require a business entity to manage
  *      their generation and sending.
 */
 
-import { PriorityType, PriorityEnum } from "domains/types/notification/priorityType";
-import { StatusType, StatusEnum } from "domains/types/notification/statusType";
+import {
+	statusNotificationType,
+	type PriorityNotification,
+	type StatusNotification,
+} from "domains/types/notification";
 
 export interface NotificationDefinition {
-    date: Date; // date of the notification
-    message: string; // message to send
-    priority: PriorityType; // priority of the notification
-    status: StatusType; // status of the notification
+	date: Date;
+	message: string;
+	priority: PriorityNotification;
+	status: StatusNotification;
 }
 
 export class NotificationEntity {
-    private constructor(
-        public readonly definition: NotificationDefinition,
-    ) { }
+	private constructor(
+		public readonly definition: NotificationDefinition,
+	) { }
 
-    public static create(definition: NotificationDefinition): NotificationEntity {
-        return new NotificationEntity({
-            ...definition,
-            priority: definition.priority || PriorityType.from(PriorityEnum.NORMAL),
-            status : definition.status || StatusType.from(StatusEnum.PENDING),
-        });
-    }
+	public static create(definition: NotificationDefinition): NotificationEntity {
+		return new NotificationEntity({
+			...definition,
+		});
+	}
 
-    // template method
-    private updateStatus(status: StatusType): NotificationEntity {
-        return new NotificationEntity({
-            ...this.definition,
-            status,
-        });
-    }
+	// template method
+	private updateStatus(status: StatusNotification): NotificationEntity {
+		return new NotificationEntity({
+			...this.definition,
+			status,
+		});
+	}
 
-    public readNotification(): NotificationEntity {
-        return this.updateStatus(StatusType.from(StatusEnum.READ));
-    }
+	public readNotification(): NotificationEntity {
+		return this.updateStatus(statusNotificationType.createOrThrow("read"));
+	}
 
-    public ressetStatus(): NotificationEntity {
-        return this.updateStatus(StatusType.from(StatusEnum.PENDING));
-    }
+	public resetStatus(): NotificationEntity {
+		return this.updateStatus(statusNotificationType.createOrThrow("pending"));
+	}
 
-    public deleteNotification(): NotificationEntity {
-        return this.updateStatus(StatusType.from(StatusEnum.DELETED));
-    }
+	public deleteNotification(): NotificationEntity {
+		return this.updateStatus(statusNotificationType.createOrThrow("deleted"));
+	}
 }
