@@ -2,11 +2,13 @@ import { type ZodBranded, type ZodType, type infer as zodInfer } from "zod";
 
 export class ValueObjectError<
 	GenericName extends string,
-> {
+> extends Error {
 	public constructor(
 		public name: GenericName,
-		public message: string,
-	) {}
+		message: string,
+	) {
+		super(message);
+	}
 }
 
 export class ValueObject<
