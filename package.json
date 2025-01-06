@@ -8,6 +8,9 @@
     "domains",
     "infrastructures/duplo"
   ],
+  "dependencies": {
+    "zod": "3.24.1"
+  },
   "devDependencies": {
     "@duplojs/eslint": "^0.3.0",
     "@types/node": "^22.10.1",
