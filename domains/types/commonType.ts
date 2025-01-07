@@ -14,9 +14,15 @@ export const fullNameType = createValueObject(
 );
 export type FullName = GetValueObject<typeof fullNameType>;
 
-export const PassedDate = createValueObject(
+export const passedDateType = createValueObject(
 	"PassedDate",
 	z.date().refine((date) => date < new Date()),
 );
-export type PassedDate = GetValueObject<typeof PassedDate>;
+export type PassedDate = GetValueObject<typeof passedDateType>;
+
+export const positiveNumberType = createValueObject(
+	"PositiveNumber",
+	z.number().positive(),
+);
+export type PositiveNumber = GetValueObject<typeof positiveNumberType>;
 

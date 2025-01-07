@@ -1,4 +1,4 @@
-import { type SparePartRepository } from "applications/interfaces/repositories/sparePartRepository";
+import { type SparePartRepository } from "applications/interfaces/sparePartRepository";
 import { type SparePartDefinition } from "domains/entities/sparePartEntity";
 
 interface Dependences {

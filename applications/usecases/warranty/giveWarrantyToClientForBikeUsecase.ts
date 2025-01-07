@@ -1,4 +1,4 @@
-import type { WarrantyRepository } from "applications/interfaces/repositories/warrantyRepository";
+import type { WarrantyRepository } from "applications/interfaces/warrantyRepository";
 import { type ClientEntity } from "domains/entities/clientEntity";
 import { type WarrantyDefinition } from "domains/entities/warrantyEntity";
 

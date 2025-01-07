@@ -1,5 +1,6 @@
-import { type BikeRepository } from "applications/interfaces/repositories/bikeRepository";
+import { type BikeRepository } from "applications/interfaces/bikeRepository";
 import { type BikeDefinition } from "domains/entities/bikeEntity";
+import { type BikeModelEntity } from "domains/entities/bikeModelEntity";
 
 interface Dependences {
 	bikeRepository: BikeRepository;
@@ -8,8 +9,9 @@ interface Dependences {
 interface Params {
 	bike: Pick<
 		BikeDefinition,
-		"factoryYear" | "mileage" | "model" | "purchaseDate" | "registration" | "type"
+		"factoryYear" | "mileage" | "purchaseDate" | "registration"
 	>;
+	bikeModel: BikeModelEntity;
 }
 
 export class CreateBike {
@@ -18,12 +20,8 @@ export class CreateBike {
 		params: Params,
 	) {
 		const bike = await dependences.bikeRepository.create({
-			registration: params.bike.registration,
-			factoryYear: params.bike.factoryYear,
-			type: params.bike.type,
-			mileage: params.bike.mileage,
-			purchaseDate: params.bike.purchaseDate,
-			model: params.bike.model,
+			...params.bike,
+			BikeModelName: params.bikeModel.definition.name,
 		});
 
 		return bike;

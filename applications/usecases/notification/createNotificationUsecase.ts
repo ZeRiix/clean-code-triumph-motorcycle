@@ -1,4 +1,4 @@
-import { type NotificationRepository } from "applications/interfaces/repositories/notificationRepository";
+import { type NotificationRepository } from "applications/interfaces/notificationRepository";
 import { type NotificationDefinition } from "domains/entities/notificationEntity";
 
 interface Dependences {

@@ -1,4 +1,4 @@
-import { type ClientRepository } from "applications/interfaces/repositories/clientRepository";
+import { type ClientRepository } from "applications/interfaces/clientRepository";
 import { type ClientDefinition } from "domains/entities/clientEntity";
 
 interface Dependences {
@@ -18,9 +18,7 @@ export class CreateClient {
 		params: Params,
 	) {
 		const client = await dependences.clientRepository.create({
-			siret: params.client.siret,
-			email: params.client.email,
-			phone: params.client.phone,
+			...params.client,
 			address: params.client.address,
 		});
 

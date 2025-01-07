@@ -1,4 +1,4 @@
-import { type DriverRepository } from "applications/interfaces/repositories/driverRepository";
+import { type DriverRepository } from "applications/interfaces/driverRepository";
 import { type DriverDefinition } from "domains/entities/driverEntity";
 
 interface Dependences {
@@ -18,9 +18,7 @@ export class CreateDriver {
 		params: Params,
 	) {
 		const driver = await dependence.driverRepository.create({
-			fullName: params.driver.fullName,
-			birthdate: params.driver.birthdate,
-			licenseDateObtained: params.driver.licenseDateObtained,
+			...params.driver,
 			licenseNumber: params.driver.licenseNumber,
 		});
 

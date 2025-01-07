@@ -1,6 +1,6 @@
-import type { TryRepository } from "applications/interfaces/repositories/tryRepository";
+import { type TryRepository } from "applications/interfaces/tryRepository";
 import { type BikeEntity } from "domains/entities/bikeEntity";
-import { type ClientEntity } from "domains/entities/clientEntity";
+import { type DriverEntity } from "domains/entities/driverEntity";
 import { type TryDefinition } from "domains/entities/tryEntity";
 
 interface Dependences {
@@ -9,7 +9,7 @@ interface Dependences {
 
 interface Params {
 	tryParams: Pick<TryDefinition, "startDate" | "endDate">;
-	clientEntity: ClientEntity;
+	driver: DriverEntity;
 	bikeEntity: BikeEntity;
 }
 
@@ -20,8 +20,8 @@ export class createClientTryUsecase {
 	) {
 		const tryEntity = await dependences.tryRepository.create({
 			...params.tryParams,
-			ClientSiret: params.clientEntity.definition.siret,
-			MotorcycleReference: params.bikeEntity.definition.registration,
+			driverLicenceNumber: params.driver.definition.licenseNumber,
+			bikeRegistration: params.bikeEntity.definition.registration,
 		});
 
 		return tryEntity;

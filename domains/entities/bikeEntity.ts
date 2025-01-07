@@ -1,13 +1,13 @@
-import { type FactoryYearBike, type MileageBike, type PurchaseDateBike, type TypeBike, type RegistrationBike } from "domains/types/bikeType";
+import { type FactoryYearBike, type MileageBike, type PurchaseDateBike, type RegistrationBike } from "domains/types/bikeType";
 import { DomainEntity, interfaceDomainEntity } from ".";
+import { BikeModelDefinition } from "./bikeModelEntity";
 
 export interface BikeDefinition {
+	BikeModelName: BikeModelDefinition["name"];
 	registration: RegistrationBike;
 	factoryYear: FactoryYearBike;
-	type: TypeBike;
 	mileage: MileageBike;
 	purchaseDate: PurchaseDateBike;
-	model: string | null;
 	stillInCirculation: boolean;
 }
 
