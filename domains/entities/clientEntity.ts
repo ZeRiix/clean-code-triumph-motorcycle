@@ -1,8 +1,9 @@
-import { type Email, type FullName } from "domains/types/common";
+import { type Email } from "domains/types/common";
 import { DomainEntity, interfaceDomainEntity } from ".";
+import { Siret } from "domains/types/company";
 
 export interface ClientDefinition {
-	siret: FullName;
+	siret: Siret;
 	email: Email | null;
 	phone: string | null;
 	address: string | null;
