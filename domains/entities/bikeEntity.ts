@@ -1,4 +1,5 @@
 import { type FactoryYearBike, type MileageBike, type PurchaseDateBike, type TypeBike, type RegistrationBike } from "domains/types/bike";
+import { DomainEntity, interfaceDomainEntity } from ".";
 
 export interface BikeDefinition {
 	registration: RegistrationBike;
@@ -7,18 +8,22 @@ export interface BikeDefinition {
 	mileage: MileageBike;
 	purchaseDate: PurchaseDateBike;
 	model: string | null;
-	status: boolean;
+	stillInCirculation: boolean;
 }
 
-export class BikeEntity {
-	private constructor(
-		public readonly definition: BikeDefinition,
-	) { }
-
-	public static create(definition: Omit<BikeDefinition, "status">) {
+@interfaceDomainEntity
+export class BikeEntity extends DomainEntity<BikeDefinition> {
+	public static create(definition: Omit<BikeDefinition, "stillInCirculation">) {
 		return new BikeEntity({
 			...definition,
-			status: true,
+			stillInCirculation: true,
+		});
+	}
+
+	public removeFromCirculation() {
+		return new BikeEntity({
+			...this.definition,
+			stillInCirculation: false,
 		});
 	}
 }

@@ -9,16 +9,4 @@ export const priorityNotificationType = createValueObject(
 		"high",
 	]),
 );
-
 export type PriorityNotification = GetValueObject<typeof priorityNotificationType>;
-
-export const statusNotificationType = createValueObject(
-	"StatusNotification",
-	z.enum([
-		"pending",
-		"read",
-		"deleted",
-	]),
-);
-
-export type StatusNotification = GetValueObject<typeof statusNotificationType>;

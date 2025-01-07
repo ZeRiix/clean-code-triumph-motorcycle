@@ -1,11 +1,11 @@
 import { type Email, type FullName } from "domains/types/common";
 
 export interface ClientDefinition {
-	fullName: FullName;
-	email: Email;
-	phone: string;
-	address: string;
-	status: boolean;
+	siret: FullName;
+	email: Email | null;
+	phone: string | null;
+	address: string | null;
+	isPartner: boolean;
 }
 
 export class ClientEntity {
@@ -13,10 +13,10 @@ export class ClientEntity {
 		public readonly definition: ClientDefinition,
 	) { }
 
-	public static create(definition: Omit<ClientDefinition, "status">) {
+	public static create(definition: Omit<ClientDefinition, "isPartner">) {
 		return new ClientEntity({
 			...definition,
-			status: true,
+			isPartner: true,
 		});
 	}
 }

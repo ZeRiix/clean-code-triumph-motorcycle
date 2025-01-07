@@ -1,10 +1,7 @@
 import { type BikeEntity } from "domains/entities/bikeEntity";
 import { type RegistrationBike } from "domains/types/bike";
+import { type BaseRepository } from ".";
 
-export interface BikeRepository {
-	create(bike: BikeEntity): Promise<void>;
-	update(bike: BikeEntity): Promise<void>;
-	delete(bike: BikeEntity): Promise<void>;
-
+export interface BikeRepository extends BaseRepository<typeof BikeEntity> {
 	getByRegistration(registrationBick: RegistrationBike): Promise<BikeEntity>;
 }
