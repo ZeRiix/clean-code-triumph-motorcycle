@@ -1,6 +1,6 @@
 import { DomainEntity, interfaceDomainEntity } from ".";
 import { BikeDefinition } from "./bikeEntity";
-import { DriverDefinition } from "./driverEntity";
+import { DriverDefinition } from "./human/driverEntity";
 
 export interface TryDefinition {
 	startDate: Date;

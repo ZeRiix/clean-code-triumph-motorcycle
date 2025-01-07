@@ -1,5 +1,5 @@
 import { type IncidentRepository } from "applications/repositories/incidentRepository";
-import { type DriverEntity } from "domains/entities/driverEntity";
+import { type DriverEntity } from "domains/entities/human/driverEntity";
 import { type IncidentDefinition } from "domains/entities/incidentEntity";
 
 interface Dependences {

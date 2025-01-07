@@ -1,5 +1,5 @@
 import { SocialSecurityNumber, type FullName } from "domains/types/commonType";
-import { DomainEntity, interfaceDomainEntity } from ".";
+import { DomainEntity, interfaceDomainEntity } from "..";
 
 export interface ManagerDefinition {
 	socialSecurityNumber: SocialSecurityNumber;

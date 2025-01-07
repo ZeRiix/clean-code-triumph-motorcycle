@@ -1,6 +1,6 @@
 import { type TryRepository } from "applications/repositories/tryRepository";
 import { type BikeEntity } from "domains/entities/bikeEntity";
-import { type DriverEntity } from "domains/entities/driverEntity";
+import { type DriverEntity } from "domains/entities/human/driverEntity";
 import { type TryDefinition } from "domains/entities/tryEntity";
 
 interface Dependences {

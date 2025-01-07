@@ -1,12 +1,12 @@
-import { type FullName } from "domains/types/commonType";
 import { type CostInterview, type TypeInterview } from "domains/types/interviewType";
 import { DomainEntity, interfaceDomainEntity } from ".";
+import { TechnicianDefinition } from "./human/technicianEntity";
 
 export interface InterviewDefinition {
 	date: Date;
 	type: TypeInterview;
 	costTTC: CostInterview;
-	fullNameTechnician: FullName;
+	socialSecurityNumberTechnician: TechnicianDefinition["socialSecurityNumber"];
 	notes: string | null;
 }
 

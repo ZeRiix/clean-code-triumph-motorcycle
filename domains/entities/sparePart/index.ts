@@ -3,8 +3,8 @@ import {
 	type PartReference,
 	type UnitPrice,
 } from "domains/types/sparePartType";
-import { quantityStockType, type QuantityStock } from "domains/types/stockType";
-import { DomainEntity, interfaceDomainEntity } from ".";
+import { DomainEntity, interfaceDomainEntity } from "..";
+import { QuantityStock, quantityStockType } from "domains/types/stockType";
 
 export interface SparePartDefinition {
 	reference: PartReference;
