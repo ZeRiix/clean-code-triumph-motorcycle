@@ -9,7 +9,7 @@ import { type Incident } from "domains/types/incident";
 export interface IncidentDefinition {
 	date: PassedDateType;
 	type: Incident;
-	description?: string;
+	description: string | null;
 }
 
 export class IncidentEntity {
@@ -17,7 +17,7 @@ export class IncidentEntity {
 		public readonly definition: IncidentDefinition,
 	) { }
 
-	public static create(definition: IncidentDefinition): IncidentEntity {
+	public static create(definition: IncidentDefinition) {
 		return new IncidentEntity(definition);
 	}
 }

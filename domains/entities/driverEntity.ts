@@ -12,7 +12,7 @@ export interface DriverDefinition {
 	licenseNumber: LicenseNumberDriver;
 	licenseDateObtained: PassedDateType;
 	birthdate: PassedDateType;
-	status: boolean | null;
+	status: boolean;
 }
 
 export class DriverEntity {
@@ -20,14 +20,14 @@ export class DriverEntity {
 		public readonly definition: Readonly<DriverDefinition>,
 	) { }
 
-	public static create(definition: Omit<DriverDefinition, "status">): DriverEntity {
+	public static create(definition: Omit<DriverDefinition, "status">) {
 		return new DriverEntity({
 			...definition,
 			status: true,
 		});
 	}
 
-	public desactivate(): DriverEntity {
+	public desactivate() {
 		return new DriverEntity({
 			...this.definition,
 			status: false,

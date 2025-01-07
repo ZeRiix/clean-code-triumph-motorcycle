@@ -7,20 +7,20 @@
 export interface WarrantyDefinition {
 	startDate: Date;
 	endDate: Date;
-	description?: string;
+	description: string | null;
 }
 
-export class Warranty {
+export class WarrantyEntity {
 	private constructor(
 		public readonly definition: WarrantyDefinition,
 	) { }
 
-	public static create(definition: WarrantyDefinition): Warranty {
-		return new Warranty(definition);
+	public static create(definition: WarrantyDefinition) {
+		return new WarrantyEntity(definition);
 	}
 
-	public extendWarranty(endDate: Date): Warranty {
-		return new Warranty({
+	public extendWarranty(endDate: Date) {
+		return new WarrantyEntity({
 			...this.definition,
 			endDate,
 		});

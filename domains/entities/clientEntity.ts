@@ -5,7 +5,7 @@ export interface ClientDefinition {
 	email: Email;
 	phone: string;
 	address: string;
-	status?: boolean;
+	status: boolean;
 }
 
 export class ClientEntity {
@@ -13,14 +13,14 @@ export class ClientEntity {
 		public readonly definition: ClientDefinition,
 	) { }
 
-	public static create(definition: ClientDefinition): ClientEntity {
+	public static create(definition: Omit<ClientDefinition, "status">) {
 		return new ClientEntity({
 			...definition,
 			status: true,
 		});
 	}
 
-	public desactivate(): ClientEntity {
+	public desactivate() {
 		return new ClientEntity({
 			...this.definition,
 			status: false,

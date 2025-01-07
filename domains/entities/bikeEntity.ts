@@ -21,21 +21,21 @@ export class BikeEntity {
 		public readonly definition: BikeDefinition,
 	) { }
 
-	public static create(definition: Omit<BikeDefinition, "status">): BikeEntity {
+	public static create(definition: Omit<BikeDefinition, "status">) {
 		return new BikeEntity({
 			...definition,
 			status: true,
 		});
 	}
 
-	public updateMileage(newMileage: MileageBike): BikeEntity {
+	public updateMileage(newMileage: MileageBike) {
 		return new BikeEntity({
 			...this.definition,
 			mileage: newMileage,
 		});
 	}
 
-	public desactivate(): BikeEntity {
+	public desactivate() {
 		return new BikeEntity({
 			...this.definition,
 			status: false,

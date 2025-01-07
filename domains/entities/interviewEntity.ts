@@ -14,7 +14,7 @@ export interface InterviewDefinition {
 	date: Date;
 	type: TypeInterview;
 	costTTC: CostInterview;
-	technician: FullName | null;
+	technician: FullName;
 	notes: string | null;
 }
 
@@ -23,7 +23,7 @@ export class InterviewEntity {
 		public readonly definition: InterviewDefinition,
 	) { }
 
-	public static create(definition: InterviewDefinition): InterviewEntity {
+	public static create(definition: InterviewDefinition) {
 		return new InterviewEntity({
 			...definition,
 		});

@@ -18,33 +18,16 @@ export interface NotificationDefinition {
 }
 
 export class NotificationEntity {
+	public static defaultStatus = statusNotificationType.createOrThrow("pending");
+
 	private constructor(
 		public readonly definition: NotificationDefinition,
 	) { }
 
-	public static create(definition: NotificationDefinition): NotificationEntity {
+	public static create(definition: NotificationDefinition) {
 		return new NotificationEntity({
 			...definition,
+			status: NotificationEntity.defaultStatus,
 		});
-	}
-
-	// template method
-	private updateStatus(status: StatusNotification): NotificationEntity {
-		return new NotificationEntity({
-			...this.definition,
-			status,
-		});
-	}
-
-	public readNotification(): NotificationEntity {
-		return this.updateStatus(statusNotificationType.createOrThrow("read"));
-	}
-
-	public resetStatus(): NotificationEntity {
-		return this.updateStatus(statusNotificationType.createOrThrow("pending"));
-	}
-
-	public deleteNotification(): NotificationEntity {
-		return this.updateStatus(statusNotificationType.createOrThrow("deleted"));
 	}
 }

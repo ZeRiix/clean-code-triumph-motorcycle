@@ -16,20 +16,20 @@ export class TryEntity {
 		public readonly definition: TryDefinition,
 	) { }
 
-	public static create(definition: TryDefinition): TryEntity {
+	public static create(definition: TryDefinition) {
 		return new TryEntity({
 			...definition,
 		});
 	}
 
-	public extendTry(endDate: Date): TryEntity {
+	public extendTry(endDate: Date) {
 		return new TryEntity({
 			...this.definition,
 			endDate,
 		});
 	}
 
-	public reduceTry(endDate: Date): TryEntity {
+	public reduceTry(endDate: Date) {
 		return new TryEntity({
 			...this.definition,
 			endDate,

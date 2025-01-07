@@ -18,7 +18,7 @@ export interface SparePartDefinition {
 	name: string;
 	stock: QuantityStock;
 	reorderLevel: ReorderLevel;
-	unitPriceTTC?: UnitPrice;
+	unitPriceTTC: UnitPrice;
 }
 
 export class SparePartEntity {
@@ -28,14 +28,14 @@ export class SparePartEntity {
 		public readonly definition: SparePartDefinition,
 	) { }
 
-	public static create(definition: SparePartDefinition): SparePartEntity {
+	public static create(definition: SparePartDefinition) {
 		return new SparePartEntity({
 			...definition,
 			stock: definition.stock || this.defaultStock,
 		});
 	}
 
-	public updateStock(quantity: QuantityStock): SparePartEntity {
+	public updateStock(quantity: QuantityStock) {
 		return new SparePartEntity({
 			...this.definition,
 			stock: quantity,
