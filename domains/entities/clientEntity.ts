@@ -19,12 +19,5 @@ export class ClientEntity {
 			status: true,
 		});
 	}
-
-	public desactivate() {
-		return new ClientEntity({
-			...this.definition,
-			status: false,
-		});
-	}
 }
 

@@ -1,8 +1,3 @@
-/*
- * Justification: An incident history is crucial to ensure proper
- *      management of tests and drivers.
-*/
-
 import { type PassedDateType } from "domains/types/common";
 import { type Incident } from "domains/types/incident";
 
@@ -18,6 +13,6 @@ export class IncidentEntity {
 	) { }
 
 	public static create(definition: IncidentDefinition) {
-		return new IncidentEntity(definition);
+		return new IncidentEntity({ ...definition });
 	}
 }

@@ -1,9 +1,3 @@
-/*
- * Justification: Drivers using motorcycles must be monitored, particularly
- *      with regard to their profile (license, experience, history) and
- *      possible incidents.
-*/
-
 import { type PassedDateType, type FullName } from "domains/types/common";
 import { type LicenseNumberDriver } from "domains/types/driver";
 
@@ -24,13 +18,6 @@ export class DriverEntity {
 		return new DriverEntity({
 			...definition,
 			status: true,
-		});
-	}
-
-	public desactivate() {
-		return new DriverEntity({
-			...this.definition,
-			status: false,
 		});
 	}
 }

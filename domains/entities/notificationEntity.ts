@@ -1,9 +1,3 @@
-/*
- * Justification: Automatic reminders and alerts (interviews to schedule,
- *      critical stock thresholds) require a business entity to manage
- *      their generation and sending.
-*/
-
 import {
 	statusNotificationType,
 	type PriorityNotification,
@@ -24,7 +18,7 @@ export class NotificationEntity {
 		public readonly definition: NotificationDefinition,
 	) { }
 
-	public static create(definition: NotificationDefinition) {
+	public static create(definition: Omit<NotificationDefinition, "status">) {
 		return new NotificationEntity({
 			...definition,
 			status: NotificationEntity.defaultStatus,
