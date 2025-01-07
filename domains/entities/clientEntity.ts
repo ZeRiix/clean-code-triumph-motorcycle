@@ -1,6 +1,6 @@
-import { type Email } from "domains/types/common";
+import { type Email } from "domains/types/commonType";
 import { DomainEntity, interfaceDomainEntity } from ".";
-import { Siret } from "domains/types/company";
+import { Siret } from "domains/types/companyType";
 
 export interface ClientDefinition {
 	siret: Siret;

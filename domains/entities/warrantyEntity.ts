@@ -1,6 +1,8 @@
+import { type Siret } from "domains/types/companyType";
 import { DomainEntity, interfaceDomainEntity } from ".";
 
 export interface WarrantyDefinition {
+	clientSiret: Siret;
 	startDate: Date;
 	endDate: Date;
 	description: string | null;

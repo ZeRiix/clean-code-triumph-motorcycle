@@ -1,10 +1,12 @@
-import { type RegistrationBike } from "domains/types/bike";
+import { type RegistrationBike } from "domains/types/bikeType";
 import { DomainEntity, interfaceDomainEntity } from ".";
+import { Siret } from "domains/types/companyType";
 
 export interface TryDefinition {
 	startDate: Date;
 	endDate: Date;
 	MotorcycleReference: RegistrationBike;
+	ClientSiret: Siret;
 }
 
 @interfaceDomainEntity

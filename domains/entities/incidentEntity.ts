@@ -1,7 +1,7 @@
-import { type PassedDate } from "domains/types/common";
-import { type Incident } from "domains/types/incident";
+import { type PassedDate } from "domains/types/commonType";
+import { type Incident } from "domains/types/incidentType";
 import { DomainEntity, interfaceDomainEntity } from ".";
-import { LicenseNumberDriver } from "domains/types/driver";
+import { LicenseNumberDriver } from "domains/types/driverType";
 
 export interface IncidentDefinition {
 	licenseNumberDriver: LicenseNumberDriver;

@@ -1,6 +1,6 @@
 import {
 	type PriorityNotification,
-} from "domains/types/notification";
+} from "domains/types/notificationType";
 import { DomainEntity, interfaceDomainEntity } from ".";
 
 export interface NotificationDefinition {
@@ -11,7 +11,7 @@ export interface NotificationDefinition {
 
 @interfaceDomainEntity
 export class NotificationEntity extends DomainEntity<NotificationDefinition> {
-	public static create(definition: Omit<NotificationDefinition, "status">) {
+	public static create(definition: NotificationDefinition) {
 		return new NotificationEntity({
 			...definition,
 		});

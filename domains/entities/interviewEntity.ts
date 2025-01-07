@@ -1,5 +1,5 @@
-import { type FullName } from "domains/types/common";
-import { type CostInterview, type TypeInterview } from "domains/types/interview";
+import { type FullName } from "domains/types/commonType";
+import { type CostInterview, type TypeInterview } from "domains/types/interviewType";
 import { DomainEntity, interfaceDomainEntity } from ".";
 
 export interface InterviewDefinition {
