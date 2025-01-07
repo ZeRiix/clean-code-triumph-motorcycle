@@ -1,12 +1,12 @@
-import { type PassedDateType, type FullName } from "domains/types/common";
+import { type PassedDate, type FullName } from "domains/types/common";
 import { type LicenseNumberDriver } from "domains/types/driver";
 import { DomainEntity, interfaceDomainEntity } from ".";
 
 export interface DriverDefinition {
-	name: FullName;
+	fullName: FullName;
 	licenseNumber: LicenseNumberDriver;
-	licenseDateObtained: PassedDateType;
-	birthdate: PassedDateType;
+	licenseDateObtained: PassedDate;
+	birthdate: PassedDate;
 	status: boolean;
 }
 

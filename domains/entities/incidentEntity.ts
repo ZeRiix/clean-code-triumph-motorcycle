@@ -1,9 +1,11 @@
-import { type PassedDateType } from "domains/types/common";
+import { type PassedDate } from "domains/types/common";
 import { type Incident } from "domains/types/incident";
 import { DomainEntity, interfaceDomainEntity } from ".";
+import { LicenseNumberDriver } from "domains/types/driver";
 
 export interface IncidentDefinition {
-	date: PassedDateType;
+	licenseNumberDriver: LicenseNumberDriver;
+	date: PassedDate;
 	type: Incident;
 	description: string | null;
 }

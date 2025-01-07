@@ -7,7 +7,11 @@ export default [
 	},
 	{
 		...duplojsEslintOpen,
-		files: ["domains/types/index.ts", "applications/interfaces/repositories/index.ts", "domains/entities/index.ts"],
+		files: [
+			"domains/types/index.ts", 
+			"applications/interfaces/repositories/index.ts", 
+			"domains/entities/index.ts"
+		],
 	},
 	{
 		ignores: ["coverage", "dist"]
