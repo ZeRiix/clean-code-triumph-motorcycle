@@ -1,4 +1,4 @@
-import { type InterviewRepository } from "applications/interfaces/interviewRepository";
+import { type InterviewRepository } from "applications/repositories/interviewRepository";
 import { type InterviewDefinition } from "domains/entities/interviewEntity";
 
 interface Dependences {

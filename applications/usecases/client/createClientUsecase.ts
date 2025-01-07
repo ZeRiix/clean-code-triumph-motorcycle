@@ -1,4 +1,4 @@
-import { type ClientRepository } from "applications/interfaces/clientRepository";
+import { type ClientRepository } from "applications/repositories/clientRepository";
 import { type ClientDefinition } from "domains/entities/clientEntity";
 
 interface Dependences {

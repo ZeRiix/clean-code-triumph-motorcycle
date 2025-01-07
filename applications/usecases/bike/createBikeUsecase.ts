@@ -1,4 +1,4 @@
-import { type BikeRepository } from "applications/interfaces/bikeRepository";
+import { type BikeRepository } from "applications/repositories/bikeRepository";
 import { type BikeDefinition } from "domains/entities/bikeEntity";
 import { type BikeModelEntity } from "domains/entities/bikeModelEntity";
 

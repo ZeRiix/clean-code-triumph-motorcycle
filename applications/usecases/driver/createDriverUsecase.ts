@@ -1,4 +1,4 @@
-import { type DriverRepository } from "applications/interfaces/driverRepository";
+import { type DriverRepository } from "applications/repositories/driverRepository";
 import { type DriverDefinition } from "domains/entities/driverEntity";
 
 interface Dependences {

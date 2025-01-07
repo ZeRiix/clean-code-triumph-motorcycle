@@ -1,6 +1,7 @@
 import { type FactoryYearBike, type MileageBike, type PurchaseDateBike, type RegistrationBike } from "domains/types/bikeType";
 import { DomainEntity, interfaceDomainEntity } from ".";
 import { BikeModelDefinition } from "./bikeModelEntity";
+import { PositiveNumber } from "domains/types/commonType";
 
 export interface BikeDefinition {
 	BikeModelName: BikeModelDefinition["name"];
@@ -9,6 +10,7 @@ export interface BikeDefinition {
 	mileage: MileageBike;
 	purchaseDate: PurchaseDateBike;
 	stillInCirculation: boolean;
+	interviewAtMileage: PositiveNumber | null;
 }
 
 @interfaceDomainEntity

@@ -26,3 +26,9 @@ export const positiveNumberType = createValueObject(
 );
 export type PositiveNumber = GetValueObject<typeof positiveNumberType>;
 
+const SOCIAL_SECURITY_NUMBER_PATERNE = /[12][0-9]{2}(0[1-9]|1[0-2])(2[AB]|[0-9]{2})[0-9]{3}[0-9]{3}([0-9]{2})/;
+export const socialSecurityNumberType = createValueObject(
+	"SocialSecurityNumber",
+	z.string().regex(SOCIAL_SECURITY_NUMBER_PATERNE),
+);
+export type SocialSecurityNumber = GetValueObject<typeof socialSecurityNumberType>;
