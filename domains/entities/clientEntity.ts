@@ -1,4 +1,5 @@
 import { type Email, type FullName } from "domains/types/common";
+import { DomainEntity, interfaceDomainEntity } from ".";
 
 export interface ClientDefinition {
 	siret: FullName;
@@ -8,11 +9,8 @@ export interface ClientDefinition {
 	isPartner: boolean;
 }
 
-export class ClientEntity {
-	private constructor(
-		public readonly definition: ClientDefinition,
-	) { }
-
+@interfaceDomainEntity
+export class ClientEntity extends DomainEntity<ClientDefinition> {
 	public static create(definition: Omit<ClientDefinition, "isPartner">) {
 		return new ClientEntity({
 			...definition,

@@ -1,5 +1,6 @@
 import { type FullName } from "domains/types/common";
 import { type CostInterview, type TypeInterview } from "domains/types/interview";
+import { DomainEntity, interfaceDomainEntity } from ".";
 
 export interface InterviewDefinition {
 	date: Date;
@@ -9,11 +10,8 @@ export interface InterviewDefinition {
 	notes: string | null;
 }
 
-export class InterviewEntity {
-	private constructor(
-		public readonly definition: InterviewDefinition,
-	) { }
-
+@interfaceDomainEntity
+export class InterviewEntity extends DomainEntity<InterviewDefinition> {
 	public static create(definition: InterviewDefinition) {
 		return new InterviewEntity({
 			...definition,

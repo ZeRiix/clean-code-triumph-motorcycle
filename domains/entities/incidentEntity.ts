@@ -1,5 +1,6 @@
 import { type PassedDateType } from "domains/types/common";
 import { type Incident } from "domains/types/incident";
+import { DomainEntity, interfaceDomainEntity } from ".";
 
 export interface IncidentDefinition {
 	date: PassedDateType;
@@ -7,12 +8,11 @@ export interface IncidentDefinition {
 	description: string | null;
 }
 
-export class IncidentEntity {
-	private constructor(
-		public readonly definition: IncidentDefinition,
-	) { }
-
+@interfaceDomainEntity
+export class IncidentEntity extends DomainEntity<IncidentDefinition> {
 	public static create(definition: IncidentDefinition) {
-		return new IncidentEntity({ ...definition });
+		return new IncidentEntity({
+			...definition,
+		});
 	}
 }

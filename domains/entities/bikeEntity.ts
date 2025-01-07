@@ -19,11 +19,4 @@ export class BikeEntity extends DomainEntity<BikeDefinition> {
 			stillInCirculation: true,
 		});
 	}
-
-	public removeFromCirculation() {
-		return new BikeEntity({
-			...this.definition,
-			stillInCirculation: false,
-		});
-	}
 }

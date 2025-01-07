@@ -4,6 +4,7 @@ import {
 	type UnitPrice,
 } from "domains/types/sparePart";
 import { type QuantityStock } from "domains/types/stock";
+import { DomainEntity, interfaceDomainEntity } from ".";
 
 export interface SparePartDefinition {
 	reference: PartReference;
@@ -13,11 +14,8 @@ export interface SparePartDefinition {
 	unitPriceTTC: UnitPrice;
 }
 
-export class SparePartEntity {
-	private constructor(
-		public readonly definition: SparePartDefinition,
-	) { }
-
+@interfaceDomainEntity
+export class SparePartEntity extends DomainEntity<SparePartDefinition> {
 	public static create(definition: SparePartDefinition) {
 		return new SparePartEntity({
 			...definition,

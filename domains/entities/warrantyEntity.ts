@@ -1,14 +1,13 @@
+import { DomainEntity, interfaceDomainEntity } from ".";
+
 export interface WarrantyDefinition {
 	startDate: Date;
 	endDate: Date;
 	description: string | null;
 }
 
-export class WarrantyEntity {
-	private constructor(
-		public readonly definition: WarrantyDefinition,
-	) { }
-
+@interfaceDomainEntity
+export class WarrantyEntity extends DomainEntity<WarrantyDefinition> {
 	public static create(definition: WarrantyDefinition) {
 		return new WarrantyEntity({ ...definition });
 	}
