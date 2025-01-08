@@ -1,5 +1,5 @@
 import { type SparePartRepository } from "applications/repositories/sparePartRepository";
-import { type SparePartDefinition } from "domains/entities/sparePartEntity";
+import { type SparePartDefinition } from "domains/entities/sparePart";
 
 interface Dependences {
 	sparePartRepository: SparePartRepository;

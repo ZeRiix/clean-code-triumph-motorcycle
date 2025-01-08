@@ -9,7 +9,7 @@ interface Dependences {
 interface Params {
 	bike: Pick<
 		BikeDefinition,
-		"factoryYear" | "mileage" | "purchaseDate" | "registration"
+		"factoryYear" | "mileage" | "purchaseDate" | "registration" | "interviewAtMileage"
 	>;
 	bikeModel: BikeModelEntity;
 }
