@@ -1,8 +1,8 @@
-import { SocialSecurityNumber, type FullName } from "domains/types/commonType";
+import { Id, type FullName } from "domains/types/commonType";
 import { DomainEntity, interfaceDomainEntity } from "..";
 
 export interface ManagerDefinition {
-	socialSecurityNumber: SocialSecurityNumber;
+	id: Id;
 	fullName: FullName;
 }
 

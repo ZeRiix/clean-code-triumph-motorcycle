@@ -11,13 +11,13 @@ export type MaintenanceInterviewDefinition = {
 	date: Date;
 	note: string;
 	cost: PositiveNumber;
-	socialSecurityNumberTechnician: TechnicianDefinition["socialSecurityNumber"];
+	technicianId: TechnicianDefinition["id"];
 } | {
 	isFinished: false;
 	date: null;
 	note: null;
 	cost: null;
-	socialSecurityNumberTechnician: null;
+	technicianId: null;
 });
 
 @interfaceDomainEntity
@@ -25,7 +25,7 @@ export class MaintenanceInterviewEntity extends DomainEntity<MaintenanceIntervie
 	public static create(
 		definition: Omit<
 			MaintenanceInterviewDefinition,
-			"reservedDate" | "isFinished" | "note" | "date" | "cost" | "socialSecurityNumberTechnician"
+			"reservedDate" | "isFinished" | "note" | "date" | "cost" | "technicianId"
 		>,
 	) {
 		return new MaintenanceInterviewEntity({
@@ -34,7 +34,7 @@ export class MaintenanceInterviewEntity extends DomainEntity<MaintenanceIntervie
 			isFinished: false,
 			cost: null,
 			date: null,
-			socialSecurityNumberTechnician: null,
+			technicianId: null,
 			note: null,
 		});
 	}

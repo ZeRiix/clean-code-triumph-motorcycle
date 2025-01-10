@@ -1,5 +1,5 @@
 import { type BikeRepository } from "applications/repositories/bikeRepository";
-import { type BikeDefinition } from "domains/entities/bikeEntity";
+import { type BikeDefinition, BikeEntity } from "domains/entities/bikeEntity";
 import { type BikeModelEntity } from "domains/entities/bikeModelEntity";
 
 interface Dependences {
@@ -9,21 +9,21 @@ interface Dependences {
 interface Params {
 	bike: Pick<
 		BikeDefinition,
-		"factoryYear" | "mileage" | "purchaseDate" | "registration" | "interviewAtMileage"
+		"factoryYear" | "mileage" | "purchaseDate" | "registration" | "interviewAtMileage" | "vin"
 	>;
 	bikeModel: BikeModelEntity;
 }
 
 export class CreateBike {
-	public static async execute(
+	public static execute(
 		dependences: Dependences,
 		params: Params,
 	) {
-		const bike = await dependences.bikeRepository.create({
+		const bike = BikeEntity.create({
 			...params.bike,
 			BikeModelName: params.bikeModel.definition.name,
 		});
 
-		return bike;
+		return dependences.bikeRepository.save(bike);
 	}
 }

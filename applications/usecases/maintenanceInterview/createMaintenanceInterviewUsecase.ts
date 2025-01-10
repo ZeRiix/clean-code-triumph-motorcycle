@@ -1,5 +1,5 @@
 import { type MaintenanceInterviewRepository } from "applications/repositories/maintenanceInterviewRepository";
-import { type MaintenanceInterviewDefinition } from "domains/entities/maintenanceInterviewEntity";
+import { MaintenanceInterviewEntity, type MaintenanceInterviewDefinition } from "domains/entities/maintenanceInterviewEntity";
 
 interface Dependences {
 	maintenanceInterviewRepository: MaintenanceInterviewRepository;
@@ -13,14 +13,14 @@ interface Params {
 }
 
 export class CreateMaintenanceInterviewUsecase {
-	public static async execute(
+	public static execute(
 		dependences: Dependences,
 		params: Params,
 	) {
-		const maintenanceInterview = await dependences.maintenanceInterviewRepository.create({
+		const maintenanceInterview = MaintenanceInterviewEntity.create({
 			...params.maintenanceInterview,
 		});
 
-		return maintenanceInterview;
+		return dependences.maintenanceInterviewRepository.save(maintenanceInterview);
 	}
 }

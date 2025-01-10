@@ -1,8 +1,10 @@
+import { type Id } from "domains/types/commonType";
 import { DomainEntity, interfaceDomainEntity } from ".";
 import { BikeDefinition } from "./bikeEntity";
 import { DriverDefinition } from "./human/driverEntity";
 
 export interface TryDefinition {
+	id: Id;
 	startDate: Date;
 	endDate: Date;
 	bikeRegistration: BikeDefinition["registration"];

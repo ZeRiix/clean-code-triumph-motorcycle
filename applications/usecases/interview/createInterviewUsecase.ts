@@ -1,5 +1,5 @@
 import { type InterviewRepository } from "applications/repositories/interviewRepository";
-import { type InterviewDefinition } from "domains/entities/interviewEntity";
+import { InterviewEntity, type InterviewDefinition } from "domains/entities/interviewEntity";
 
 interface Dependences {
 	interviewRepository: InterviewRepository;
@@ -8,19 +8,19 @@ interface Dependences {
 interface Params {
 	interview: Pick<
 		InterviewDefinition,
-		"costTTC" | "date" | "notes" | "type" | "socialSecurityNumberTechnician"
+		"costTTC" | "date" | "notes" | "type" | "technicianId"
 	>;
 }
 
 export class CreateIncident {
-	public static async execute(
+	public static execute(
 		dependences: Dependences,
 		params: Params,
 	) {
-		const interview = await dependences.interviewRepository.create({
+		const interview = InterviewEntity.create({
 			...params.interview,
 		});
 
-		return interview;
+		return dependences.interviewRepository.save(interview);
 	}
 }

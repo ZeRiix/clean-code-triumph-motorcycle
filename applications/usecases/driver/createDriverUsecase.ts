@@ -1,5 +1,5 @@
 import { type DriverRepository } from "applications/repositories/driverRepository";
-import { type DriverDefinition } from "domains/entities/human/driverEntity";
+import { type DriverDefinition, DriverEntity } from "domains/entities/human/driverEntity";
 
 interface Dependences {
 	driverRepository: DriverRepository;
@@ -13,15 +13,14 @@ interface Params {
 }
 
 export class CreateDriver {
-	public static async execute(
-		dependence: Dependences,
+	public static execute(
+		dependences: Dependences,
 		params: Params,
 	) {
-		const driver = await dependence.driverRepository.create({
+		const driver = DriverEntity.create({
 			...params.driver,
-			licenseNumber: params.driver.licenseNumber,
 		});
 
-		return driver;
+		return dependences.driverRepository.save(driver);
 	}
 }

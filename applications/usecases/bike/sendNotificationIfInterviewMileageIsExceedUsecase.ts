@@ -2,7 +2,7 @@ import { type ClientNotificationRepository } from "applications/repositories/cli
 import { type ClientRepository } from "applications/repositories/clientRepository";
 import { type BikeEntity } from "domains/entities/bikeEntity";
 import { priorityNotificationType } from "domains/types/notificationType";
-import { CreateClientNotificationUsecase } from "../clientNotification/createCLientNotificationUsecase";
+import { CreateClientNotificationUsecase } from "../clientNotification/createClientNotificationUsecase";
 
 interface Dependences {
 	clientNotificationRepository: ClientNotificationRepository;

@@ -1,6 +1,6 @@
 import { type ClientNotificationRepository } from "applications/repositories/clientNotificationRepository";
 import { type ClientEntity } from "domains/entities/clientEntity";
-import { type ClientNotificationDefinition } from "domains/entities/notification/clientNotificationEntity";
+import { type ClientNotificationDefinition, ClientNotificationEntity } from "domains/entities/notification/clientNotificationEntity";
 
 interface Dependences {
 	clientNotificationRepository: ClientNotificationRepository;
@@ -15,17 +15,15 @@ interface Params {
 }
 
 export class CreateClientNotificationUsecase {
-	public static async execute(
+	public static execute(
 		dependences: Dependences,
 		params: Params,
 	) {
-		const { clientEntity, clientNotification } = params;
-
-		const notification = await dependences.clientNotificationRepository.create({
-			...clientNotification,
-			clientSiret: clientEntity.definition.siret,
+		const clientNotification = ClientNotificationEntity.create({
+			...params.clientNotification,
+			clientSiret: params.clientEntity.definition.siret,
 		});
 
-		return notification;
+		return dependences.clientNotificationRepository.save(clientNotification);
 	}
 }

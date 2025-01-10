@@ -6,7 +6,7 @@ export interface InterviewDefinition {
 	date: Date;
 	type: TypeInterview;
 	costTTC: CostInterview;
-	socialSecurityNumberTechnician: TechnicianDefinition["socialSecurityNumber"];
+	technicianId: TechnicianDefinition["id"];
 	notes: string | null;
 }
 

@@ -1,5 +1,5 @@
 import { type ClientRepository } from "applications/repositories/clientRepository";
-import { type ClientDefinition } from "domains/entities/clientEntity";
+import { type ClientDefinition, ClientEntity } from "domains/entities/clientEntity";
 
 interface Dependences {
 	clientRepository: ClientRepository;
@@ -13,15 +13,14 @@ interface Params {
 }
 
 export class CreateClient {
-	public static async execute(
+	public static execute(
 		dependences: Dependences,
 		params: Params,
 	) {
-		const client = await dependences.clientRepository.create({
+		const client = ClientEntity.create({
 			...params.client,
-			address: params.client.address,
 		});
 
-		return client;
+		return dependences.clientRepository.save(client);
 	}
 }

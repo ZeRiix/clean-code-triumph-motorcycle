@@ -1,6 +1,6 @@
 import type { WarrantyRepository } from "applications/repositories/warrantyRepository";
 import { type ClientEntity } from "domains/entities/clientEntity";
-import { type WarrantyDefinition } from "domains/entities/warrantyEntity";
+import { WarrantyEntity, type WarrantyDefinition } from "domains/entities/warrantyEntity";
 
 interface Dependences {
 	warrantyRepository: WarrantyRepository;
@@ -15,15 +15,15 @@ interface Params {
 }
 
 export class GiveWarrantyToClientForBikeUsecase {
-	public static async execute(
+	public static execute(
 		dependences: Dependences,
 		params: Params,
 	) {
-		const warranty = await dependences.warrantyRepository.create({
+		const warranty = WarrantyEntity.create({
 			...params.warrrantyParams,
 			clientSiret: params.clientEntity.definition.siret,
 		});
 
-		return warranty;
+		return dependences.warrantyRepository.save(warranty);
 	}
 }

@@ -1,5 +1,5 @@
 import { type BikeModelRepository } from "applications/repositories/bikeModelRepository";
-import { type BikeModelDefinition } from "domains/entities/bikeModelEntity";
+import { type BikeModelDefinition, BikeModelEntity } from "domains/entities/bikeModelEntity";
 
 interface Dependences {
 	bikeModelRepository: BikeModelRepository;
@@ -13,14 +13,14 @@ interface Params {
 }
 
 export class CreateBikeModel {
-	public static async execute(
+	public static execute(
 		dependences: Dependences,
 		params: Params,
 	) {
-		const bikeModel = await dependences.bikeModelRepository.create({
+		const bikeModel = BikeModelEntity.create({
 			...params.bikeModel,
 		});
 
-		return bikeModel;
+		return dependences.bikeModelRepository.save(bikeModel);
 	}
 }

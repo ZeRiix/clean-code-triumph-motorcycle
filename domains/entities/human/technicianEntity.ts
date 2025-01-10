@@ -1,9 +1,9 @@
-import { type SocialSecurityNumber, type FullName } from "domains/types/commonType";
+import { type FullName, Id } from "domains/types/commonType";
 import { DomainEntity, interfaceDomainEntity } from "..";
 
 export interface TechnicianDefinition {
+	id: Id;
 	FullName: FullName;
-	socialSecurityNumber: SocialSecurityNumber;
 }
 
 @interfaceDomainEntity

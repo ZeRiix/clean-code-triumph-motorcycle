@@ -1,6 +1,6 @@
 import { type IncidentRepository } from "applications/repositories/incidentRepository";
 import { type DriverEntity } from "domains/entities/human/driverEntity";
-import { type IncidentDefinition } from "domains/entities/incidentEntity";
+import { IncidentEntity, type IncidentDefinition } from "domains/entities/incidentEntity";
 
 interface Dependences {
 	incidentRepository: IncidentRepository;
@@ -15,15 +15,15 @@ interface Params {
 }
 
 export class CreateIncident {
-	public static async execute(
+	public static execute(
 		dependences: Dependences,
 		params: Params,
 	) {
-		const incident = await dependences.incidentRepository.create({
+		const incident = IncidentEntity.create({
 			...params.incident,
 			licenseNumberDriver: params.driver.definition.licenseNumber,
 		});
 
-		return incident;
+		return dependences.incidentRepository.save(incident);
 	}
 }

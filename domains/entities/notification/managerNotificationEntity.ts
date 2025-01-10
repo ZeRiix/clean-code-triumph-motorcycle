@@ -1,9 +1,9 @@
 import { DomainEntity, interfaceDomainEntity } from "..";
-import { ManagerDefinition } from "../managerEntity";
+import { ManagerDefinition } from "../human/managerEntity";
 import { NotificationDefinitionBase } from ".";
 
 export interface ManagerNotificationDefinition extends NotificationDefinitionBase {
-	managerSocialSecurityNumber: ManagerDefinition["socialSecurityNumber"];
+	managerId: ManagerDefinition["id"];
 }
 
 @interfaceDomainEntity
