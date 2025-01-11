@@ -38,4 +38,12 @@ export class MaintenanceInterviewEntity extends DomainEntity<MaintenanceIntervie
 			note: null,
 		});
 	}
+
+	public addTechnicianNote(note: string) {
+		this.definition.note = note;
+	}
+
+	public addCost(cost: PositiveNumber) {
+		this.definition.cost = cost;
+	}
 }

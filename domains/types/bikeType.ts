@@ -1,12 +1,6 @@
 import { z } from "zod";
 import { createValueObject, type GetValueObject } from ".";
 
-export const mileageBikeType = createValueObject(
-	"MileageBike",
-	z.number().positive(),
-);
-export type MileageBike = GetValueObject<typeof mileageBikeType>;
-
 export const purchaseDateBikeType = createValueObject(
 	"PurchaseDateBike",
 	z.tuple([z.date(), z.number().positive()])

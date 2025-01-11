@@ -1,17 +1,17 @@
-import { type VinBike, type FactoryYearBike, type MileageBike, type PurchaseDateBike, type RegistrationBike } from "domains/types/bikeType";
+import { type VinBike, type FactoryYearBike, type PurchaseDateBike, type RegistrationBike } from "domains/types/bikeType";
 import { DomainEntity, interfaceDomainEntity } from ".";
 import { BikeModelDefinition } from "./bikeModelEntity";
-import { PositiveNumber } from "domains/types/commonType";
+import { type PositiveNumber } from "domains/types/commonType";
 
 export interface BikeDefinition {
 	vin: VinBike;
 	BikeModelName: BikeModelDefinition["name"];
 	registration: RegistrationBike;
 	factoryYear: FactoryYearBike;
-	mileage: MileageBike;
+	mileage: PositiveNumber;
 	purchaseDate: PurchaseDateBike;
 	stillInCirculation: boolean;
-	interviewAtMileage: PositiveNumber | null;
+	lastInterviewDate: Date;
 }
 
 @interfaceDomainEntity
