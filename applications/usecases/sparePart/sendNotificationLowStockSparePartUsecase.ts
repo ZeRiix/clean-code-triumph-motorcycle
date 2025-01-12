@@ -1,9 +1,11 @@
 import { type ManagerNotificationRepository } from "applications/repositories/managerNotificationRepository";
 import { type SparePartEntity } from "domains/entities/sparePart";
-import { ManagerNotificationEntity } from "domains/entities/notification/managerNotificationEntity";
-import { CreateManagerNotificationUsecase } from "../managerNotification/createManagerNotificationUsecase";
+import { SendNotifactionToManagersService } from "applications/services/manager/sendNotifactionToManagers";
+import { priorityNotificationType } from "domains/types/notificationType";
+import { type ManagerRepository } from "applications/repositories/managerRepository";
 
 interface Dependences {
+	managerRepository: ManagerRepository;
 	managerNotificationRepository: ManagerNotificationRepository;
 }
 
@@ -12,6 +14,8 @@ interface Params {
 }
 
 export class SendNotificationLowStockSparePartUsecase {
+	private static priorityNotification = priorityNotificationType.createOrThrow("high");
+
 	public static execute(
 		dependences: Dependences,
 		params: Params,
@@ -22,15 +26,14 @@ export class SendNotificationLowStockSparePartUsecase {
 			return;
 		}
 
-		return CreateManagerNotificationUsecase.execute(
+		return SendNotifactionToManagersService.execute(
 			dependences,
 			{
 				managerNotification: {
-					message: `The spare part ${sparePartEntity.name} is low stock`,
-					priority: 
+					priority: this.priorityNotification,
+					message: "",
 				},
 			},
-
 		);
 	}
 }

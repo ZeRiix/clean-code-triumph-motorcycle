@@ -2,19 +2,17 @@ import { type ClientNotificationRepository } from "applications/repositories/cli
 import { type ClientRepository } from "applications/repositories/clientRepository";
 import { type BikeEntity } from "domains/entities/bikeEntity";
 import { priorityNotificationType } from "domains/types/notificationType";
-import { CreateClientNotificationUsecase } from "../clientNotification/createClientNotificationUsecase";
 import { type BikeModelRepository } from "applications/repositories/bikeModelRepository";
 import { type ManagerNotificationRepository } from "applications/repositories/managerNotificationRepository";
 import { type ManagerRepository } from "applications/repositories/managerRepository";
-import { CreateManagerNotificationUsecase } from "../managerNotification/createManagerNotificationUsecase";
+import { MaintenanceDateIsPassedService } from "applications/services/bike/maintenanceDateIsPassed";
+import { CreateClientNotificationUsecase } from "../client/createCLientNotificationUsecase";
+import { SendNotifactionToManagersService } from "applications/services/manager/sendNotifactionToManagers";
 
 interface Dependences {
-	// bike
 	bikeModelRepository: BikeModelRepository;
-	// client
 	clientRepository: ClientRepository;
 	clientNotificationRepository: ClientNotificationRepository;
-	// manager
 	managerRepository: ManagerRepository;
 	managerNotificationRepository: ManagerNotificationRepository;
 }
@@ -34,21 +32,22 @@ export class SendNotificationForInterviewUsecase {
 
 		const bikeModelEntity = await dependences.bikeModelRepository.getByBikeEntityOrThrow(bikeEntity);
 
-		/**
-		 * Check if the bike needs maintenance
-		 */
+		const dateIsPassed = MaintenanceDateIsPassedService.execute({
+			bikeEntity,
+			bikeModelEntity,
+		});
+
+		if (dateIsPassed instanceof Error) {
+			return dateIsPassed;
+		}
+
+		if (!dateIsPassed) {
+			return;
+		}
 
 		if (bikeModelEntity.definition.interviewIntervalByKillometers < bikeEntity.definition.mileage) {
 			return;
 		}
-
-		if (!bikeModelEntity.isMaintenanceDatePassed(bikeEntity)) {
-			return;
-		}
-
-		/**
-		 * Send notification to client and manager
-		 */
 
 		const clientEntity = await dependences.clientRepository.getByBikeEntityOrThrow(bikeEntity);
 
@@ -63,19 +62,14 @@ export class SendNotificationForInterviewUsecase {
 			},
 		);
 
-		const managerEntities = await dependences.managerRepository.getAllManager();
-
-		await Promise.all(
-			managerEntities.map((managerEntity) => CreateManagerNotificationUsecase.execute(
-				dependences,
-				{
-					managerNotification: {
-						message: "",
-						priority: this.priorityNotification,
-					},
-					managerEntity,
+		await SendNotifactionToManagersService.execute(
+			dependences,
+			{
+				managerNotification: {
+					message: "",
+					priority: this.priorityNotification,
 				},
-			)),
+			},
 		);
 	}
 }
