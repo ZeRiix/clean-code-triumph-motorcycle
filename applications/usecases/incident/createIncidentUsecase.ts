@@ -1,6 +1,6 @@
 import { type IncidentRepository } from "applications/repositories/incidentRepository";
 import { type DriverEntity } from "domains/entities/human/driverEntity";
-import { IncidentEntity, type IncidentDefinition } from "domains/entities/incidentEntity";
+import { IncidentEntity, type IncidentDefinition } from "domains/entities/bikeHistory/incidentEntity";
 
 interface Dependences {
 	incidentRepository: IncidentRepository;
@@ -9,7 +9,7 @@ interface Dependences {
 interface Params {
 	incident: Pick<
 		IncidentDefinition,
-		"date" | "description" | "type"
+		"date" | "description" | "type" | "issue" | "licenseNumberDriver"
 	>;
 	driver: DriverEntity;
 }

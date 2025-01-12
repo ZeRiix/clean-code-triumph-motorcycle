@@ -1,5 +1,5 @@
 import { type MaintenanceInterviewRepository } from "applications/repositories/maintenanceInterviewRepository";
-import { MaintenanceInterviewEntity, type MaintenanceInterviewDefinition } from "domains/entities/maintenanceInterviewEntity";
+import { MaintenanceInterviewEntity, type MaintenanceInterviewDefinition } from "domains/entities/bikeHistory/maintenanceInterviewEntity";
 
 interface Dependences {
 	maintenanceInterviewRepository: MaintenanceInterviewRepository;
@@ -8,7 +8,7 @@ interface Dependences {
 interface Params {
 	maintenanceInterview: Pick<
 		MaintenanceInterviewDefinition,
-		"issue" | "reservedDate" | "estimatedDate"
+		"issue" | "reservedDate" | "estimatedDate" | "incidentIssue"
 	>;
 }
 

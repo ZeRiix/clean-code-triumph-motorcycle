@@ -1,9 +1,9 @@
 import { type BaseRepository } from ".";
 import { type SparePartChangedEntity } from "domains/entities/sparePart/sparePartChangedEntity";
-import { type MaintenanceInterviewEntity } from "domains/entities/maintenanceInterviewEntity";
+import { type MaintenanceInterviewDefinition } from "domains/entities/bikeHistory/maintenanceInterviewEntity";
 
 export interface SparePartChangedRepository extends BaseRepository<typeof SparePartChangedEntity> {
-	getAllByMaintenanceInterview(
-		maintenanceInterviewEntity: MaintenanceInterviewEntity,
+	getAllByMaintenanceInterviewIssue(
+		maintenanceInterviewIssue: MaintenanceInterviewDefinition["issue"],
 	): Promise<SparePartChangedEntity[]>;
 }

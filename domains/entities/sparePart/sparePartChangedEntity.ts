@@ -1,6 +1,6 @@
 import { PositiveNumber } from "domains/types/commonType";
 import { DomainEntity, interfaceDomainEntity } from "..";
-import { type MaintenanceInterviewDefinition } from "../maintenanceInterviewEntity";
+import { type MaintenanceInterviewDefinition } from "../bikeHistory/maintenanceInterviewEntity";
 import { type SparePartDefinition } from ".";
 
 export interface SparePartChangedDefinition {

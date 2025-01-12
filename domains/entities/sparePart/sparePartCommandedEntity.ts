@@ -7,6 +7,7 @@ export interface SparePartCommandedDefinition {
 	reference: SparePartDefinition["reference"];
 	unitPriceTTC: UnitPrice;
 	quantity: PositiveNumber;
+	deliveryDelay: PositiveNumber;
 }
 
 @interfaceDomainEntity
