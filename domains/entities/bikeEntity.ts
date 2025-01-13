@@ -2,6 +2,7 @@ import { type VinBike, type FactoryYearBike, type PurchaseDateBike, type Registr
 import { DomainEntity, interfaceDomainEntity } from ".";
 import { BikeModelDefinition } from "./bikeModelEntity";
 import { type PositiveNumber } from "domains/types/commonType";
+import { DomainError } from "domains/errors";
 
 export interface BikeDefinition {
 	vin: VinBike;
@@ -20,6 +21,17 @@ export class BikeEntity extends DomainEntity<BikeDefinition> {
 		return new BikeEntity({
 			...definition,
 			stillInCirculation: true,
+		});
+	}
+
+	public updateMileage(newMileage: BikeDefinition["mileage"]) {
+		if (newMileage.value < this.definition.mileage.value) {
+			return new DomainError("new-mileage-less-than-mileage");
+		}
+
+		return new BikeEntity({
+			...this.definition,
+			mileage: newMileage,
 		});
 	}
 }
