@@ -21,7 +21,7 @@ export class CreateBike {
 	) {
 		const bike = BikeEntity.create({
 			...params.bike,
-			BikeModelName: params.bikeModel.definition.name,
+			modelName: params.bikeModel.definition.name,
 		});
 
 		return dependences.bikeRepository.save(bike);

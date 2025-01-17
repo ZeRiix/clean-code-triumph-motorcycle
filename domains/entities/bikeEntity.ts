@@ -6,7 +6,7 @@ import { DomainError } from "domains/errors";
 
 export interface BikeDefinition {
 	vin: VinBike;
-	BikeModelName: BikeModelDefinition["name"];
+	modelName: BikeModelDefinition["name"];
 	registration: RegistrationBike;
 	factoryYear: FactoryYearBike;
 	mileage: PositiveNumber;

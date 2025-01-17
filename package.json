@@ -3,11 +3,16 @@
   "version": "1.0.0",
   "description": "",
   "type": "module",
-  "workspaces": [
-    "applications",
-    "domains",
-    "infrastructures/duplo"
-  ],
+  "workspaces": {
+	"packages": [
+	  "applications",
+	  "domains",
+	  "infrastructures/*"
+	],
+	"nohoist": [
+		"infrastructures/*"
+	]
+  },
   "dependencies": {
     "zod": "3.24.1"
   },
