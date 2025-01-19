@@ -1,21 +1,22 @@
 {
-  "name": "duplo",
-  "type": "module",
-  "scripts": {
-	"dev": "tsx --watch duplo/main.ts",
-	"generate:prisma": "prisma generate",
-	"migrate": "prisma migrate dev --name init"
-  },
-  "dependencies": {
-    "@duplojs/core": "0.23.1",
-    "@duplojs/node": "0.3.2",
-	"@prisma/client": "^6.2.1",
-    "@zodyac/zod-mongoose": "^3.2.0",
-    "dotenv": "^16.4.7",
-    "mongoose": "^8.9.5",
-    "prisma": "^6.2.1"
-  },
-  "devDependencies": {
-    "tsx": "^4.19.2"
-  }
+	"name": "infrastructures",
+	"type": "module",
+	"scripts": {
+		"dev:duplo": "tsx --watch duplo/main.ts",
+		"generate:prisma": "prisma generate",
+		"migrate": "prisma migrate dev --name init"
+	},
+	"dependencies": {
+		"@duplojs/core": "0.23.1",
+		"@duplojs/node": "0.3.2",
+		"@prisma/client": "^6.2.1",
+		"@zodyac/zod-mongoose": "^3.2.0",
+		"dotenv": "^16.4.7",
+		"fastify": "^5.2.1",
+		"mongoose": "^8.9.5",
+		"prisma": "^6.2.1"
+	},
+	"devDependencies": {
+		"tsx": "^4.19.2"
+	}
 }

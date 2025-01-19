@@ -4,20 +4,15 @@
 	"description": "",
 	"type": "module",
 	"scripts": {
-		"dev:duplo": "npm -w infrastructures run dev",
+		"dev:duplo": "npm -w infrastructures run dev:duplo",
 		"generate:prisma": "npm -w infrastructures run generate:prisma",
 		"migrate:prisma": "npm -w infrastructures run migrate"
 	},
-	"workspaces": {
-		"packages": [
-			"applications",
-			"domains",
-			"infrastructures/*"
-		],
-		"nohoist": [
-			"infrastructures/*"
-		]
-	},
+	"workspaces": [
+		"applications",
+		"domains",
+		"infrastructures"
+	],
 	"dependencies": {
 		"zod": "3.24.1"
 	},

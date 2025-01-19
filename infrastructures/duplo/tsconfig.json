@@ -1,0 +1,8 @@
+{
+	"extends": "../tsconfig.json",
+    "compilerOptions": {
+        "paths": {
+			"@routes": ["duplo/src/routes/index.ts"],
+        }
+    },
+}

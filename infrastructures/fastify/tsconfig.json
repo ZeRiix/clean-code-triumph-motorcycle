@@ -1,0 +1,9 @@
+{
+	"extends": "../tsconfig.json",
+    "compilerOptions": {
+        "paths": {
+			"@routes": ["fastify/routes/index.ts"],
+			"@fastify": ["fastify/main.ts"],
+        }
+    },
+}
