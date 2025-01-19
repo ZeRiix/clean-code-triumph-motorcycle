@@ -127,14 +127,15 @@ model MaintenanceInterview {
     issue             String      @id @default(uuid())
     reservedDate      DateTime
     estimatedDate     DateTime
-    incident          Incident    @relation(fields: [incidentIssue], references: [issue])
-    incidentIssue     String      @unique
+    incident          Incident?   @relation(fields: [incidentIssue], references: [issue])
+    incidentIssue     String?     @unique
     isFinished        Boolean
     note              String?
     cost              Decimal?
     technician        Technician? @relation(fields: [technicianId], references: [userId])
     technicianId      String?
     interviewDuration Decimal?
+    date              DateTime?
 }
 
 model Warranty {
