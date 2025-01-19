@@ -1,5 +1,5 @@
 {
-  "name": "prisma-sqlite",
+  "name": "databases",
   "type": "module",
   "scripts": {
     "generate:prisma": "prisma generate"
@@ -7,6 +7,7 @@
   "dependencies": {
     "@prisma/client": "^6.2.1",
     "@zodyac/zod-mongoose": "^3.2.0",
+    "dotenv": "^16.4.7",
     "mongoose": "^8.9.5",
     "prisma": "^6.2.1"
   }
