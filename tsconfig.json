@@ -1,8 +1,7 @@
 {
 	"files": [],
     "references": [
-		{"path": "infrastructures/duplo/tsconfig.json"},
-		{"path": "infrastructures/databases/tsconfig.json"},
+		{"path": "infrastructures/tsconfig.json"},
 		{"path": "applications/tsconfig.json"},
 		{"path": "domains/tsconfig.json"},
 	]

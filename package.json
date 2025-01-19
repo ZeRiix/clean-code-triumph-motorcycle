@@ -4,9 +4,9 @@
 	"description": "",
 	"type": "module",
 	"scripts": {
-		"dev:duplo": "npm -w infrastructures/duplo run dev",
-		"generate:prisma": "npm -w infrastructures/databases run generate:prisma",
-		"migrate:prisma": "npm -w infrastructures/databases run migrate"
+		"dev:duplo": "npm -w infrastructures run dev",
+		"generate:prisma": "npm -w infrastructures run generate:prisma",
+		"migrate:prisma": "npm -w infrastructures run migrate"
 	},
 	"workspaces": {
 		"packages": [
