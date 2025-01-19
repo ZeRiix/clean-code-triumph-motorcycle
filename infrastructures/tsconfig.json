@@ -5,7 +5,8 @@
         "paths": {
 			"mongoose": ["node_modules/mongoose"],
 			"@prisma": ["databases/prisma/index.ts"],
-			"@mongoose": ["databases/mongoose/index.ts", "databases/mongoose/schemas/*"],
+			"@mongoose": ["databases/mongoose/index.ts"],
+			"@mongoose/*": ["databases/mongoose/schemas/*"],
 			"@repositories/*": ["databases/repositories/*"],
 			"@envs": ["./envs.ts"],
         }

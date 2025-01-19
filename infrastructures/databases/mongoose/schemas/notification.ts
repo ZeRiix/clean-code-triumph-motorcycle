@@ -6,6 +6,7 @@ import { model } from "mongoose";
 import { z } from "zod";
 
 const baseNotification = z.object({
+	id: idType.zodSchema,
 	date: z.date(),
 	message: z.string(),
 	priority: priorityNotificationType.zodSchema,

@@ -8,11 +8,11 @@ interface Dependences {
 interface Params {
 	sparePartParams: Pick<
 		SparePartDefinition,
-		"reference" | "name" | "reorderLevel" | "unitPriceTTC"
+		"reference" | "name" | "reorderLevel" | "facturedPrice"
 	>;
 }
 
-export class AddSparePartUsecase {
+export class CreateSparePartUsecase {
 	public static execute(
 		dependences: Dependences,
 		params: Params,

@@ -29,7 +29,7 @@ const sparePartDocument = z.object({
 	sparePart: sparePartSchema,
 });
 
-export const SparePart = model(
+export const SparePartModel = model(
 	"SparePart",
 	zodSchema(sparePartDocument),
 );
