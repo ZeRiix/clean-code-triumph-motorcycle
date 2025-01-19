@@ -11,7 +11,6 @@ export interface SparePartDefinition {
 	name: string;
 	stock: QuantityStock;
 	reorderLevel: ReorderLevel;
-	unitPriceTTC: UnitPrice;
 }
 
 const DEFAULT_STOCK = 0;

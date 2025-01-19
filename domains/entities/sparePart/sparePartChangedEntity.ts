@@ -4,18 +4,16 @@ import { type MaintenanceInterviewDefinition } from "../bikeHistory/maintenanceI
 import { type SparePartDefinition } from ".";
 
 export interface SparePartChangedDefinition {
-	date: Date;
 	quantity: PositiveNumber;
-	sparePartReference: SparePartDefinition["reference"];
+	reference: SparePartDefinition["reference"];
 	maintenanceInterviewIssue: MaintenanceInterviewDefinition["issue"];
 }
 
 @interfaceDomainEntity
 export class SparePartChangedEntity extends DomainEntity<SparePartChangedDefinition> {
-	public static create(definition: Omit<SparePartChangedDefinition, "date">) {
+	public static create(definition: SparePartChangedDefinition) {
 		return new SparePartChangedEntity({
 			...definition,
-			date: new Date(),
 		});
 	}
 }
