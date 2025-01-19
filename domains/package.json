@@ -1,3 +1,4 @@
 {
-  "name": "domains"
+  "name": "domains",
+  "type": "module"
 }

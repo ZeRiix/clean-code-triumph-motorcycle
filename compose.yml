@@ -1,0 +1,35 @@
+services:
+  node-installer:
+    image: node:22.13.0
+    volumes:
+      - ./:/home/node/project
+    environment:
+      npm_config_cache: /home/node/cache
+    working_dir: /home/node/project
+    user: 1000:1000
+    command: npm i
+
+  duplo:
+    image: node:22.13.0
+    volumes:
+      - ./:/home/node/project
+    ports:
+      - 1506:1506
+    environment:
+      npm_config_cache: /home/node/cache
+    working_dir: /home/node/project
+    user: 1000:1000
+    command: npm run dev:duplo
+    depends_on:
+      node-installer:
+        condition: service_completed_successfully
+
+  mongo:
+    image: mongo:8.0.4
+    env_file: ./infrastructures/databases/.env
+    volumes:
+      - "mongo_data:/data/db"
+    attach: false
+
+volumes:
+  mongo_data:

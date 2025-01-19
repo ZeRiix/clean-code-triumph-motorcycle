@@ -2,7 +2,7 @@
 	"files": [],
     "references": [
 		{"path": "infrastructures/duplo/tsconfig.json"},
-		{"path": "infrastructures/prisma-sqlite/tsconfig.json"},
+		{"path": "infrastructures/databases/tsconfig.json"},
 		{"path": "applications/tsconfig.json"},
 		{"path": "domains/tsconfig.json"},
 	]

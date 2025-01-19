@@ -1,5 +1,9 @@
 {
   "name": "duplo",
+  "type": "module",
+  "scripts": {
+	"dev": "tsx --watch main.ts"
+  },
   "dependencies": {
     "@duplojs/core": "0.23.1",
     "@duplojs/node": "0.3.2"

@@ -1,12 +1,12 @@
 import { type BikeRepository } from "applications/repositories/bikeRepository";
-import { type driverHistoryRepository } from "applications/repositories/driverHistoryRepository";
+import { type DriverHistoryRepository } from "applications/repositories/driverHistoryRepository";
 import { type DriverRepository } from "applications/repositories/driverRepository";
 import { type BikeEntity } from "domains/entities/bikeEntity";
 import { DriverHistoryEntity, type DriverHistoryDefinition } from "domains/entities/bikeHistory/driverHistory";
 import { type DriverEntity } from "domains/entities/human/driverEntity";
 
 export interface Dependences {
-	driverHistoryRepository: driverHistoryRepository;
+	driverHistoryRepository: DriverHistoryRepository;
 	DriverRepository: DriverRepository;
 	BikeRepository: BikeRepository;
 }

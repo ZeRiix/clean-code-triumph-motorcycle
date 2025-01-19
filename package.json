@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "type": "module",
+  "scripts": {
+	"dev:duplo": "npm -w infrastructures/duplo run dev"
+  },
   "workspaces": {
 	"packages": [
 	  "applications",
@@ -10,7 +13,7 @@
 	  "infrastructures/*"
 	],
 	"nohoist": [
-		"infrastructures/*"
+	  "infrastructures/*"
 	]
   },
   "dependencies": {
