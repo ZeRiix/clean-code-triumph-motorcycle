@@ -42,13 +42,14 @@ model Bike {
 }
 
 model Client {
-    siret    String     @id @unique
-    phone    String
-    address  String
-    isPatner Boolean
-    user     User       @relation(fields: [userId], references: [id])
-    userId   String     @unique
-    Warranty Warranty[]
+    siret     String     @id @unique
+    phone     String?
+    address   String?
+    isPartner Boolean
+    user      User?      @relation(fields: [userId], references: [id])
+    userId    String?    @unique
+    Warranty  Warranty[]
+    Driver    Driver[]
 }
 
 model Driver {
@@ -62,6 +63,8 @@ model Driver {
     userId              String          @unique
     Incident            Incident[]
     DriverHistory       DriverHistory[]
+    client              Client          @relation(fields: [clientSiret], references: [siret])
+    clientSiret         String
 }
 
 model Manager {
