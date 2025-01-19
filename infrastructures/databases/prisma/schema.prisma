@@ -54,29 +54,26 @@ model Client {
 
 model Driver {
     licenseNumber       String          @unique
-    firstName           String
-    lastName            String
+    fullName            String
     licenseDateObtained DateTime
     birthDate           DateTime
     status              Boolean
-    user                User            @relation(fields: [userId], references: [id])
-    userId              String          @unique
+    user                User?           @relation(fields: [userId], references: [id])
+    userId              String?         @unique
     Incident            Incident[]
     DriverHistory       DriverHistory[]
-    client              Client          @relation(fields: [clientSiret], references: [siret])
-    clientSiret         String
+    client              Client?         @relation(fields: [clientSiret], references: [siret])
+    clientSiret         String?
 }
 
 model Manager {
-    fistName String
-    lastName String
+    fullName String
     user     User   @relation(fields: [userId], references: [id])
     userId   String @unique
 }
 
 model Technician {
-    fistName             String
-    lastName             String
+    fullName             String
     user                 User                   @relation(fields: [userId], references: [id])
     userId               String                 @unique
     Interview            Interview[]

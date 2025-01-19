@@ -1,10 +1,9 @@
 import { prisma } from "@prisma";
 import { type BikeRepository } from "applications/repositories/bikeRepository";
 import { bikeMapper } from "../mapper/bike";
-import { type VinBike } from "domains/types/bikeType";
 
 export const bikeRepository: BikeRepository = {
-	async getByVin(vin: VinBike) {
+	async getByVin(vin) {
 		const prismaBike = await prisma.bike.findFirst({
 			where: {
 				vin: vin.value,

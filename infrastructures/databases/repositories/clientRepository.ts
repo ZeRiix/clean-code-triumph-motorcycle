@@ -29,6 +29,10 @@ export const clientRepository: ClientRepository = {
 			},
 		}).then((result) => (result.driver.client));
 
+		if (!prismaClient) {
+			throw new Error("Client not found");
+		}
+
 		return clientMapper(prismaClient);
 	},
 

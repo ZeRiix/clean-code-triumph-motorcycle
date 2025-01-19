@@ -4,7 +4,7 @@
 	"scripts": {
 		"dev:duplo": "tsx --watch duplo/main.ts",
 		"generate:prisma": "prisma generate",
-		"migrate": "prisma migrate dev --name init"
+		"migrate": "prisma migrate dev"
 	},
 	"dependencies": {
 		"@duplojs/core": "0.23.1",
@@ -18,5 +18,8 @@
 	},
 	"devDependencies": {
 		"tsx": "^4.19.2"
+	},
+	"prisma": {
+		"schema": "./databases/prisma/schema.prisma"
 	}
 }
