@@ -1,27 +1,29 @@
 {
-  "name": "clean-code-project",
-  "version": "1.0.0",
-  "description": "",
-  "type": "module",
-  "scripts": {
-	"dev:duplo": "npm -w infrastructures/duplo run dev"
-  },
-  "workspaces": {
-	"packages": [
-	  "applications",
-	  "domains",
-	  "infrastructures/*"
-	],
-	"nohoist": [
-	  "infrastructures/*"
-	]
-  },
-  "dependencies": {
-    "zod": "3.24.1"
-  },
-  "devDependencies": {
-    "@duplojs/eslint": "^0.3.0",
-    "@types/node": "^22.10.1",
-    "typescript": "^5.7.2"
-  }
+	"name": "clean-code-project",
+	"version": "1.0.0",
+	"description": "",
+	"type": "module",
+	"scripts": {
+		"dev:duplo": "npm -w infrastructures/duplo run dev",
+		"generate:prisma": "npm -w infrastructures/databases run generate:prisma",
+		"migrate:prisma": "npm -w infrastructures/databases run migrate"
+	},
+	"workspaces": {
+		"packages": [
+			"applications",
+			"domains",
+			"infrastructures/*"
+		],
+		"nohoist": [
+			"infrastructures/*"
+		]
+	},
+	"dependencies": {
+		"zod": "3.24.1"
+	},
+	"devDependencies": {
+		"@duplojs/eslint": "^0.3.0",
+		"@types/node": "^22.10.1",
+		"typescript": "^5.7.2"
+	}
 }
