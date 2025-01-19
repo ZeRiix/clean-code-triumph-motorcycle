@@ -1,4 +1,4 @@
-import {duplojsEslintBase, duplojsEslintOpen} from "@duplojs/eslint";
+import { duplojsEslintBase, duplojsEslintOpen } from "@duplojs/eslint";
 
 export default [
 	{
@@ -8,8 +8,8 @@ export default [
 	{
 		...duplojsEslintOpen,
 		files: [
-			"domains/types/index.ts", 
-			"applications/interfaces/repositories/index.ts", 
+			"domains/types/index.ts",
+			"applications/interfaces/repositories/*.ts",
 			"domains/entities/index.ts"
 		],
 	},

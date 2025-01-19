@@ -22,7 +22,7 @@ const notificationSchema = z.union([
 
 const notificationDocument = z.object({
 	notification: notificationSchema,
-})
+});
 
 export const NotificationModel = model(
 	"Notification",

@@ -33,7 +33,7 @@ export class CalculateMaintenanceInterviewCostsService {
 			);
 
 			return (
-				sparePart.definition.unitPriceTTC.value
+				sparePart.definition.facturedPrice.value
 					* sparePartChangedEntity.definition.quantity.value
 					* SparePartEntity.SPARE_PART_PROFIT
 			);

@@ -1,15 +1,16 @@
 import {
 	type ReorderLevel,
 	type PartReference,
-	type UnitPrice,
 } from "domains/types/sparePartType";
 import { DomainEntity, interfaceDomainEntity } from "..";
 import { QuantityStock, quantityStockType } from "domains/types/stockType";
+import { PositiveNumber } from "../../types/commonType";
 
 export interface SparePartDefinition {
 	reference: PartReference;
 	name: string;
 	stock: QuantityStock;
+	facturedPrice: PositiveNumber;
 	reorderLevel: ReorderLevel;
 }
 

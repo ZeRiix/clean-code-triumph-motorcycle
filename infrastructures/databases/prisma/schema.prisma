@@ -156,8 +156,8 @@ model DriverHistory {
 }
 
 model SparePart {
-    reference    String  @unique
-    name         String
-    reorderLevel Int
-    unitPriceTTC Decimal
+    reference     String  @unique
+    name          String
+    reorderLevel  Int
+    facturedPrice Decimal
 }
