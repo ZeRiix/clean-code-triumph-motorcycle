@@ -1,8 +1,10 @@
 import { type CostInterview, type TypeInterview } from "domains/types/interviewType";
 import { DomainEntity, interfaceDomainEntity } from ".";
 import { TechnicianDefinition } from "./human/technicianEntity";
+import { Id } from "domains/types/commonType";
 
 export interface InterviewDefinition {
+	id: Id;
 	date: Date;
 	type: TypeInterview;
 	costTTC: CostInterview;

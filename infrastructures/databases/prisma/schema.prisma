@@ -5,38 +5,159 @@
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
 generator client {
-  provider = "prisma-client-js"
+    provider = "prisma-client-js"
 }
 
 datasource db {
-  provider = "sqlite"
-  url      = "file:./dev.db"
+    provider = "sqlite"
+    url      = "file:./dev.db"
 }
 
-
 enum BikeModelType {
-	roadster
-	trail
-	sport
-	touring
+    roadster
+    trail
+    sport
+    touring
 }
 
 model BikeModel {
-	name String @unique
-	type BikeModelType
-	interviewIntervalByKillometers Int
-	interviewIntervalByDay Int
-	Bike Bike[]
+    name                           String        @unique
+    type                           BikeModelType
+    interviewIntervalByKillometers Int
+    interviewIntervalByDay         Int
+    Bike                           Bike[]
 }
 
 model Bike {
-	vin String @unique
-	BikeModel BikeModel @relation(fields: [modelName], references: [name])
-	modelName String
-	registration String
-	factoryYear Int
-	mileage Int
-	purchaseDate DateTime
-	stillInCirculation Boolean
-	lastInterviewDate DateTime
+    vin                String          @unique
+    BikeModel          BikeModel       @relation(fields: [modelName], references: [name])
+    modelName          String
+    registration       String
+    factoryYear        Int
+    mileage            Int
+    purchaseDate       DateTime
+    stillInCirculation Boolean
+    lastInterviewDate  DateTime
+    DriverHistory      DriverHistory[]
+}
+
+model Client {
+    siret    String     @id @unique
+    phone    String
+    address  String
+    isPatner Boolean
+    user     User       @relation(fields: [userId], references: [id])
+    userId   String     @unique
+    Warranty Warranty[]
+}
+
+model Driver {
+    licenseNumber       String          @unique
+    firstName           String
+    lastName            String
+    licenseDateObtained DateTime
+    birthDate           DateTime
+    status              Boolean
+    user                User            @relation(fields: [userId], references: [id])
+    userId              String          @unique
+    Incident            Incident[]
+    DriverHistory       DriverHistory[]
+}
+
+model Manager {
+    fistName String
+    lastName String
+    user     User   @relation(fields: [userId], references: [id])
+    userId   String @unique
+}
+
+model Technician {
+    fistName             String
+    lastName             String
+    user                 User                   @relation(fields: [userId], references: [id])
+    userId               String                 @unique
+    Interview            Interview[]
+    MaintenanceInterview MaintenanceInterview[]
+}
+
+model User {
+    id         String      @id @default(uuid())
+    email      String      @unique
+    password   String
+    technician Technician?
+    manager    Manager?
+    driver     Driver?
+    client     Client?
+}
+
+enum InterviewType {
+    PREVENTIVE
+    CURATIVE
+}
+
+model Interview {
+    id           String        @id @default(uuid())
+    technician   Technician?   @relation(fields: [technicianId], references: [userId])
+    technicianId String?
+    date         DateTime
+    costTTC      Decimal
+    notes        String?
+    type         InterviewType
+}
+
+enum IncidentType {
+    ACCIDENT
+    BREAKDOWN
+    FLAT_TIRE
+    OUT_OF_GAS
+    OTHER
+}
+
+model Incident {
+    issue                String                @id @default(uuid())
+    driver               Driver                @relation(fields: [licenseNumberDriver], references: [licenseNumber])
+    licenseNumberDriver  String
+    date                 DateTime
+    type                 IncidentType
+    description          String?
+    maintenanceInterview MaintenanceInterview?
+}
+
+model MaintenanceInterview {
+    issue             String      @id @default(uuid())
+    reservedDate      DateTime
+    estimatedDate     DateTime
+    incident          Incident    @relation(fields: [incidentIssue], references: [issue])
+    incidentIssue     String      @unique
+    isFinished        Boolean
+    note              String?
+    cost              Decimal?
+    technician        Technician? @relation(fields: [technicianId], references: [userId])
+    technicianId      String?
+    interviewDuration Decimal?
+}
+
+model Warranty {
+    client      Client   @relation(fields: [clientSiret], references: [siret])
+    clientSiret String   @unique
+    startDate   DateTime
+    endDate     DateTime
+    description String?
+}
+
+model DriverHistory {
+    driver              Driver    @relation(fields: [licenseNumberDriver], references: [licenseNumber])
+    licenseNumberDriver String    @unique
+    bike                Bike      @relation(fields: [bikeVin], references: [vin])
+    bikeVin             String
+    startDate           DateTime
+    endDate             DateTime?
+    try                 Boolean
+}
+
+model SparePart {
+    reference    String  @unique
+    name         String
+    reorderLevel Int
+    unitPriceTTC Decimal
 }

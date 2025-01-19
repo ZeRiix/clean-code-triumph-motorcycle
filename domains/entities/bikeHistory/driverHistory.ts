@@ -1,4 +1,3 @@
-import { type TryOrLocation } from "domains/types/driverType";
 import { DomainEntity, interfaceDomainEntity } from "..";
 import { type BikeDefinition } from "../bikeEntity";
 import { type DriverDefinition } from "../human/driverEntity";
@@ -8,7 +7,7 @@ export interface DriverHistoryDefinition {
 	bikeVin: BikeDefinition["vin"];
 	startDate: Date;
 	endDate: Date | null;
-	tryOrLocation: TryOrLocation;
+	try: boolean;
 }
 
 @interfaceDomainEntity
