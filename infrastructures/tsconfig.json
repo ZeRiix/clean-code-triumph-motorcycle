@@ -1,14 +1,26 @@
 {
 	"extends": "../tsconfig.base.json",
-    "compilerOptions": {
-        "baseUrl": "./",
-        "paths": {
-			"mongoose": ["node_modules/mongoose"],
-			"@prisma": ["databases/prisma/index.ts"],
-			"@mongoose": ["databases/mongoose/index.ts"],
-			"@mongoose/*": ["databases/mongoose/schemas/*"],
-			"@repositories/*": ["databases/repositories/*"],
-			"@envs": ["./envs.ts"],
-        }
-    }
+	"compilerOptions": {
+		"baseUrl": ".",
+		"paths": {
+			"mongoose": [
+				"node_modules/mongoose"
+			],
+			"@prisma": [
+				"databases/prisma/index.ts"
+			],
+			"@mongoose": [
+				"databases/mongoose/index.ts"
+			],
+			"@mongoose/*": [
+				"databases/mongoose/schemas/*"
+			],
+			"@repositories/*": [
+				"databases/repositories/*"
+			],
+			"@envs": [
+				"./envs.ts"
+			],
+		}
+	}
 }
