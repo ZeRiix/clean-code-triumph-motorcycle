@@ -6,7 +6,9 @@
 	"scripts": {
 		"dev:duplo": "npm -w infrastructures run dev:duplo",
 		"generate:prisma": "npm -w infrastructures run generate:prisma",
-		"migrate:prisma": "npm -w infrastructures run migrate"
+		"migrate:prisma": "npm -w infrastructures run migrate",
+		"dev:vue": "npm -w infrastructures run dev:vue",
+		"generate:types": "npm -w infrastructures run generate:types"
 	},
 	"workspaces": [
 		"applications",
