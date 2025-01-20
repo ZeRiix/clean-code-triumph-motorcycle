@@ -12,7 +12,7 @@ const baseNotification = z.object({
 	priority: priorityNotificationType.zodSchema,
 });
 
-const notificationSchema = z.union([
+export const notificationSchema = z.union([
 	baseNotification.extend({
 		managerId: idType.zodSchema,
 	}),
