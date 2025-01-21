@@ -5,25 +5,23 @@
 /* v8 ignore start */
 // noinspection JSUnusedGlobalSymbols
 // @ts-nocheck
-interface CodegenReceiveFormData<GenericValue extends Record<string, string | string[] | number | number[] | Date | Date[] | File[]>> {
-    extractor: (...args: any[]) => Promise<GenericValue>;
-}
-
-export { CodegenReceiveFormData };
-
 type CodegenRoutes = ({
     method: "POST";
-    path: "/docs";
-    body: CodegenReceiveFormData<{
-        docs: File[];
-        accepte: "true" | "false";
-        someString: string;
-    }>;
+    path: "/login";
+    body: {
+        email: string;
+        password: string;
+    };
     response: {
-        code: 204;
-        information: "uploadedFile";
+        code: 404;
+        information: "user.notfound";
         body?: undefined;
-        ok: true;
+    } | {
+        code: 200;
+        information: "user.logged";
+        body: {
+            token: string;
+        };
     };
 });
 

@@ -8,7 +8,8 @@
 		"generate:prisma": "npm -w infrastructures run generate:prisma",
 		"migrate:prisma": "npm -w infrastructures run migrate",
 		"dev:vue": "npm -w infrastructures run dev:vue",
-		"generate:types": "npm -w infrastructures run generate:types"
+		"generate:types": "npm -w infrastructures run generate:types",
+		"generate:types:watch": "npm -w infrastructures run generate:types:watch"
 	},
 	"workspaces": [
 		"applications",

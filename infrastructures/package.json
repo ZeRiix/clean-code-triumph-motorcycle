@@ -6,7 +6,8 @@
 		"generate:prisma": "prisma generate",
 		"migrate": "prisma migrate dev",
 		"dev:vue": "cd vue && vite",
-		"generate:types": "duplojs-types-codegen --import @duplojs/node/globals --include duplo/src/routes/index.ts --output vue/src/libs/duploTo/outputType.d.ts",
+		"generate:types": "cd duplo && duplojs-types-codegen --import @duplojs/node/globals --include 'src/routes/**/*.ts' --output ../vue/src/libs/duploTo/outputType.d.ts",
+		"generate:types:watch": "cd duplo && duplojs-types-codegen --watch --import @duplojs/node/globals --include 'src/routes/**/*.ts' --output ../vue/src/libs/duploTo/outputType.d.ts",
 		"fixture": "tsx databases/fixtures"
 	},
 	"dependencies": {

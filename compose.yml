@@ -24,9 +24,22 @@ services:
       node-installer:
         condition: service_completed_successfully
 
+  duplo-generate-types:
+    image: node:22.13.0
+    volumes:
+      - ./:/home/node/project
+    environment:
+      npm_config_cache: /home/node/cache
+    working_dir: /home/node/project
+    user: 1000:1000
+    command: npm run generate:types:watch
+    depends_on:
+      node-installer:
+        condition: service_completed_successfully
+
   mongo:
     image: mongo:8.0.4
-    env_file: ./infrastructures/databases/.env
+    env_file: ./infrastructures/.env
     volumes:
       - "mongo_data:/data/db"
     attach: false
