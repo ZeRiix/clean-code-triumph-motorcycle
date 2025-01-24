@@ -3,5 +3,7 @@
 </script>
 
 <template>
-	<h1 class="text-2xl">Test</h1>
+	<div>
+		test
+	</div>
 </template>

@@ -4,5 +4,6 @@
 		{"path": "infrastructures/tsconfig.json"},
 		{"path": "applications/tsconfig.json"},
 		{"path": "domains/tsconfig.json"},
+		{"path": "frontend/tsconfig.json"},
 	]
 }

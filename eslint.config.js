@@ -4,6 +4,7 @@ export default [
 	{
 		...duplojsEslintBase,
 		files: ["**/*.ts"],
+		ignores: ["frontend"],
 	},
 	{
 		...duplojsEslintOpen,
@@ -14,6 +15,6 @@ export default [
 		],
 	},
 	{
-		ignores: ["coverage", "dist"]
+		ignores: ["coverage", "dist", "frontend"],
 	}
 ];
