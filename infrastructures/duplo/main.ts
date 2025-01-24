@@ -14,6 +14,7 @@ const duplo = new Duplo({
 duplo.hook("beforeSend", (request, response) => {
 	response.setHeaders({
 		"Access-Control-Allow-Origin": "*",
+		"Access-Control-Expose-Headers": "*",
 	});
 });
 
