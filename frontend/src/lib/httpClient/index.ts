@@ -10,10 +10,3 @@ export const httpClient = new HttpClient<HttpClientRoute>({
 httpClient.setDefaultRequestParams({
 	mode: "cors",
 });
-
-void httpClient.post("/login", {
-	body: {
-		email: "",
-		password: "",
-	},
-});
