@@ -1,8 +1,10 @@
 import { envs } from "envs";
 import jwt from "jsonwebtoken";
+import { type User } from "@prisma/client";
 
 export interface TokenContent {
 	userId: string;
+	role: User["role"];
 }
 
 export class TokenService {

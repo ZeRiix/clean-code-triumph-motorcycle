@@ -3,7 +3,9 @@
 </script>
 
 <template>
-	<div>
-		test
+	<div ref="container" class="w-full h-full overflow-auto">
+		<RouterView />
 	</div>
+
+	<TheToaster />
 </template>

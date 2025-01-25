@@ -44,7 +44,7 @@ services:
       - "mongo_data:/data/db"
     attach: false
 
-  vue:
+  frontend:
     image: node:22.13.0
     volumes:
       - ./:/home/node/project
@@ -54,7 +54,7 @@ services:
       npm_config_cache: /home/node/cache
     working_dir: /home/node/project
     user: 1000:1000
-    command: npm run dev:vue
+    command: npm run dev:frontend
     depends_on:
       node-installer:
         condition: service_completed_successfully

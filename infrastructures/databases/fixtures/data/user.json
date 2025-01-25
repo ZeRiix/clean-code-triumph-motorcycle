@@ -2,11 +2,13 @@
 	"users": [
 		{
 			"email": "zeriix@mail.com",
-			"password": "ZeRiix123@"
+			"password": "ZeRiix123@",
+			"role": "MANAGER"
 		},
 		{
 			"email": "mathcovax@mail.com",
-			"password": "Mathcovax123@"
+			"password": "Mathcovax123@",
+			"role": "MANAGER"
 		}
 	]
 }

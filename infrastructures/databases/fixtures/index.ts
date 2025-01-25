@@ -1,3 +1,4 @@
+import { type User } from "@prisma/client";
 import userData from "./data/user.json";
 import { makeUser } from "./entities/user";
 
@@ -12,6 +13,6 @@ function mapAsync<
 await mapAsync(
 	userData.users,
 	async(user) => {
-		await makeUser(user);
+		await makeUser(user as User);
 	},
 );

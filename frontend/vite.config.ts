@@ -16,7 +16,10 @@ export default defineConfig({
 				"vue-router"
 			],
 			ignore: ["_**"],
-			dirs: ["src/lib/httpClient/*.ts"],
+			dirs: [
+				"src/lib/**/*.ts",
+				"src/composables/**/*.ts",
+			],
 			dts: "src/auto-imports.d.ts",
 		}),
 		components({

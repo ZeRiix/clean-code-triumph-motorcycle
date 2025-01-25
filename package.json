@@ -7,9 +7,12 @@
 		"dev:duplo": "npm -w infrastructures run dev:duplo",
 		"generate:prisma": "npm -w infrastructures run generate:prisma",
 		"migrate:prisma": "npm -w infrastructures run migrate",
-		"dev:vue": "npm -w frontend run dev",
+		"dev:frontend": "npm -w frontend run dev",
 		"generate:types": "npm -w infrastructures run generate:types",
-		"generate:types:watch": "npm -w infrastructures run generate:types:watch"
+		"generate:types:watch": "npm -w infrastructures run generate:types:watch",
+		"fixture": "npm -w infrastructures run fixture",
+		"lint": "eslint .",
+		"lint:fix": "eslint --fix ."
 	},
 	"workspaces": [
 		"applications",

@@ -5,7 +5,6 @@
 		"dev:duplo": "cd duplo && tsx --watch main.ts",
 		"generate:prisma": "prisma generate",
 		"migrate": "prisma migrate dev",
-		"dev:vue": "cd vue && vite",
 		"generate:types": "cd duplo && duplojs-types-codegen --import @duplojs/node/globals --include 'src/routes/**/*.ts' --output ../../frontend/src/lib/httpClient/outputType.d.ts",
 		"generate:types:watch": "cd duplo && duplojs-types-codegen --watch --import @duplojs/node/globals --include 'src/routes/**/*.ts' --output ../../frontend/src/lib/httpClient/outputType.d.ts",
 		"fixture": "tsx databases/fixtures"

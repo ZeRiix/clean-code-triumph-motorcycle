@@ -6,6 +6,7 @@ export function makeUser(user: Partial<User>) {
 		data: {
 			email: user.email ?? "",
 			password: user.password ?? "",
+			role: user.role ?? "MANAGER",
 		},
 		select: {
 			id: true,

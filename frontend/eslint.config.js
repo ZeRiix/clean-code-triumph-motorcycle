@@ -33,17 +33,20 @@ export default [
 				{ "blankLine": "always", "prev": "*", "next": "*" }
 			]],
 			"vue/block-order": ["error", {
-				"order": [ [ "script", "template" ], "style" ]
+				"order": [["script", "template"], "style"]
 			}],
 			"@stylistic/js/max-len": "off",
 			"@typescript-eslint/no-unsafe-argument": "off",
-    		"@typescript-eslint/no-unsafe-call": "off",
-    		"@typescript-eslint/no-unsafe-declaration-merging": "off",
-    		"@typescript-eslint/no-unsafe-enum-comparison": "off",
-    		"@typescript-eslint/no-unsafe-function-type": "off",
-    		"@typescript-eslint/no-unsafe-member-access": "off",
-    		"@typescript-eslint/no-unsafe-unary-minus": "off",
+			"@typescript-eslint/no-unsafe-call": "off",
+			"@typescript-eslint/no-unsafe-declaration-merging": "off",
+			"@typescript-eslint/no-unsafe-enum-comparison": "off",
+			"@typescript-eslint/no-unsafe-function-type": "off",
+			"@typescript-eslint/no-unsafe-member-access": "off",
+			"@typescript-eslint/no-unsafe-unary-minus": "off",
 		},
 		files: ["src/**/*.vue", "src/**/*.ts"],
+	},
+	{
+		ignores: ["src/components/ui/*"],
 	}
 ];
