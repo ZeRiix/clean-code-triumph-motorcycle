@@ -59,6 +59,7 @@ declare global {
   const reactive: typeof import('vue')['reactive']
   const readonly: typeof import('vue')['readonly']
   const ref: typeof import('vue')['ref']
+  const removeLocalStorageItem: typeof import('./lib/utils')['removeLocalStorageItem']
   const resolveComponent: typeof import('vue')['resolveComponent']
   const setLocalStorageItem: typeof import('./lib/utils')['setLocalStorageItem']
   const shallowReactive: typeof import('vue')['shallowReactive']

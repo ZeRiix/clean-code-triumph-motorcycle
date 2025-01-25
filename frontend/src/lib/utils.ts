@@ -25,3 +25,7 @@ export function getLocalStorageItem<T>(key: string): T | null {
 		return null;
 	}
 }
+
+export function removeLocalStorageItem(key: string): void {
+	localStorage.removeItem(key);
+}
