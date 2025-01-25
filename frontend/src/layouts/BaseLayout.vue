@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import TheHeader from "@/components/TheHeader.vue";
-import TheFooter from "@/components/TheFooter.vue";
+import TheHeader from "@/domains/navigation/components/TheHeader.vue";
+import TheFooter from "@/domains/navigation/components/TheFooter.vue";
 
 </script>
 
