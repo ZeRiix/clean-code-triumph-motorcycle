@@ -26,14 +26,24 @@ const emit = defineEmits<{ "update:modelValue": [value: string] }>();
 </script>
 
 <template>
-	<TheSelect :model-value="modelValue" @update:model-value="(value) => emit('update:modelValue', value.toString())">
+	<TheSelect
+		:model-value="modelValue"
+		@update:model-value="(value) => emit('update:modelValue', value.toString())"
+	>
 		<SelectTrigger :class="props.class">
-			<SelectValue :placeholder="placeholder" :class="{'text-muted-foreground': !modelValue}" />
+			<SelectValue
+				:placeholder="placeholder"
+				:class="{'text-muted-foreground': !modelValue}"
+			/>
 		</SelectTrigger>
 
 		<SelectContent>
 			<SelectGroup>
-				<SelectItem v-for="item of items" :key="item.value" :value="item.value.toString()">
+				<SelectItem
+					v-for="item of items"
+					:key="item.value"
+					:value="item.value.toString()"
+				>
 					{{ item.label }}
 				</SelectItem>
 			</SelectGroup>

@@ -18,10 +18,21 @@ const emit = defineEmits<{ "update:modelValue": [value: string] }>();
 </script>
 
 <template>
-	<RadioGroup :default-value="defaultValue" :model-value="modelValue"
-		@update:model-value="(value) => emit('update:modelValue', value)">
-		<div v-for="(item, index) of items" :key="item.value" class="flex items-center space-x-2">
-			<RadioGroupItem :id="`radio-${index}`" :value="item.value" :disabled="item.disabled" />
+	<RadioGroup
+		:default-value="defaultValue"
+		:model-value="modelValue"
+		@update:model-value="(value) => emit('update:modelValue', value)"
+	>
+		<div
+			v-for="(item, index) of items"
+			:key="item.value"
+			class="flex items-center space-x-2"
+		>
+			<RadioGroupItem
+				:id="`radio-${index}`"
+				:value="item.value"
+				:disabled="item.disabled"
+			/>
 
 			<TheLabel :for="`radio-${index}`">
 				{{ item.label }}

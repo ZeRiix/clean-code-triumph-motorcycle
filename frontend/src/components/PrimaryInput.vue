@@ -9,5 +9,8 @@ defineProps<Props>();
 </script>
 
 <template>
-	<TheInput @update:model-value="(value: any) => emit('update:modelValue', value)" :model-value="modelValue" />
+	<TheInput
+		@update:model-value="(value: any) => emit('update:modelValue', value)"
+		:model-value="modelValue"
+	/>
 </template>

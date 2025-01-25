@@ -25,16 +25,21 @@ const curretDate = computed(() => props.modelValue ? parseDate(props.modelValue)
 <template>
 	<ThePopover>
 		<PopoverTrigger as-child>
-			<TheButton variant="outline"
-				:class="cn('justify-start text-left font-normal', !curretDate && 'text-muted-foreground')">
+			<TheButton
+				variant="outline"
+				:class="cn('justify-start text-left font-normal', !curretDate && 'text-muted-foreground')"
+			>
 				<CalendarIcon class="mr-2 h-4 w-4" />
 				{{ curretDate ? df.format(curretDate.toDate(getLocalTimeZone())) : placeholder }}
 			</TheButton>
 		</PopoverTrigger>
 
 		<PopoverContent class="w-auto p-0">
-			<TheCalendar :model-value="curretDate"
-				@update:model-value="(value: any) => emit('update:modelValue', value?.toString())" initial-focus />
+			<TheCalendar
+				:model-value="curretDate"
+				@update:model-value="(value: any) => emit('update:modelValue', value?.toString())"
+				initial-focus
+			/>
 		</PopoverContent>
 	</ThePopover>
 </template>

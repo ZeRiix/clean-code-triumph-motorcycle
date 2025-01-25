@@ -43,6 +43,7 @@ export default [
 			"@typescript-eslint/no-unsafe-function-type": "off",
 			"@typescript-eslint/no-unsafe-member-access": "off",
 			"@typescript-eslint/no-unsafe-unary-minus": "off",
+			"vue/require-explicit-emits": "off",
 		},
 		files: ["src/**/*.vue", "src/**/*.ts"],
 	},

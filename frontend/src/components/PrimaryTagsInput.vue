@@ -7,9 +7,15 @@ const emit = defineEmits<{ "update:modelValue": [value: string[]] }>();
 </script>
 
 <template>
-	<TagsInput :model-value="modelValue"
-		@update:model-value="(value: any) => emit('update:modelValue', value as string[])">
-		<TagsInputItem v-for="item in modelValue" :key="item" :value="item">
+	<TagsInput
+		:model-value="modelValue"
+		@update:model-value="(value: any) => emit('update:modelValue', value as string[])"
+	>
+		<TagsInputItem
+			v-for="item in modelValue"
+			:key="item"
+			:value="item"
+		>
 			<TagsInputItemText />
 
 			<TagsInputItemDelete />

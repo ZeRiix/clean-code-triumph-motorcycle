@@ -12,16 +12,29 @@ const curretDate = computed(() => props.modelValue ? parseDate(props.modelValue)
 </script>
 
 <template>
-	<DateFieldRoot locale="fr" :model-value="curretDate"
-		@update:model-value="(value) => emit('update:modelValue', value?.toString())" v-slot="{ segments }"
-		class="flex select-none bg-white items-center text-center text-green10 p-1 data-[invalid]:border-red-500 rounded-md border border-input bg-background file:border-0 file:bg-transparent disabled:cursor-not-allowed disabled:opacity-50">
-		<template v-for="item in segments" :key="item.part">
-			<DateFieldInput v-if="item.part === 'literal'" :part="item.part">
+	<DateFieldRoot
+		locale="fr"
+		:model-value="curretDate"
+		@update:model-value="(value) => emit('update:modelValue', value?.toString())"
+		v-slot="{ segments }"
+		class="flex select-none bg-white items-center text-center text-green10 p-1 data-[invalid]:border-red-500 rounded-md border border-input bg-background file:border-0 file:bg-transparent disabled:cursor-not-allowed disabled:opacity-50"
+	>
+		<template
+			v-for="item in segments"
+			:key="item.part"
+		>
+			<DateFieldInput
+				v-if="item.part === 'literal'"
+				:part="item.part"
+			>
 				{{ item.value }}
 			</DateFieldInput>
 
-			<DateFieldInput v-else :part="item.part"
-				class="rounded p-0.5 focus:outline-none focus:shadow-[0_0_0_2px] focus:shadow-black data-[placeholder]:text-green9">
+			<DateFieldInput
+				v-else
+				:part="item.part"
+				class="rounded p-0.5 focus:outline-none focus:shadow-[0_0_0_2px] focus:shadow-black data-[placeholder]:text-green9"
+			>
 				{{ item.value }}
 			</DateFieldInput>
 		</template>

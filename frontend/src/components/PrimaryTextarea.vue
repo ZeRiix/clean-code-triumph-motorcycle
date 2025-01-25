@@ -7,6 +7,8 @@ const emit = defineEmits<{ "update:modelValue": [value: string] }>();
 </script>
 
 <template>
-	<TheTextarea :model-value="modelValue"
-		@update:model-value="(value: any) => emit('update:modelValue', value.toString())" />
+	<TheTextarea
+		:model-value="modelValue"
+		@update:model-value="(value: any) => emit('update:modelValue', value.toString())"
+	/>
 </template>

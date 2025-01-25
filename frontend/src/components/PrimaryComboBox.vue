@@ -49,27 +49,44 @@ function onSelect(value: T) {
 <template>
 	<ThePopover v-model:open="open">
 		<PopoverTrigger as-child>
-			<TheButton :id="id" variant="outline" role="combobox" :aria-expanded="open"
-				:class="`${props.class} justify-between font-normal`" :disabled="disabled">
+			<TheButton
+				:id="id"
+				variant="outline"
+				role="combobox"
+				:aria-expanded="open"
+				:class="`${props.class} justify-between font-normal`"
+				:disabled="disabled"
+			>
 				{{ modelValue ? getLabel(modelValue as T) : textButton }}
 				<ChevronsUpDown class="ml-2 h-4 w-4 shrink-0 opacity-50" />
 			</TheButton>
 		</PopoverTrigger>
 
 		<PopoverContent class="p-0">
-			<TheCommand @update:search-term="(value) => emit('update:searchTerm', value)" :search-term="searchTerm"
-				:filter-function="(filterFunction as undefined)">
-				<CommandInput class="h-9" :placeholder="placeholder" />
+			<TheCommand
+				@update:search-term="(value) => emit('update:searchTerm', value)"
+				:search-term="searchTerm"
+				:filter-function="(filterFunction as undefined)"
+			>
+				<CommandInput
+					class="h-9"
+					:placeholder="placeholder"
+				/>
 
 				<CommandEmpty>{{ emptyLabel }}</CommandEmpty>
 
 				<CommandList>
 					<CommandGroup>
-						<CommandItem v-for="item in items" :key="getIdentifier(item)" :value="getIdentifier(item)"
-							@select="onSelect(item)">
+						<CommandItem
+							v-for="item in items"
+							:key="getIdentifier(item)"
+							:value="getIdentifier(item)"
+							@select="onSelect(item)"
+						>
 							{{ getLabel(item) }}
 							<Check
-								:class="cn('ml-auto h-4 w-4',modelValue && getIdentifier(modelValue as T) === getIdentifier(item) ? 'opacity-100' : 'opacity-0')" />
+								:class="cn('ml-auto h-4 w-4',modelValue && getIdentifier(modelValue as T) === getIdentifier(item) ? 'opacity-100' : 'opacity-0')"
+							/>
 						</CommandItem>
 					</CommandGroup>
 				</CommandList>
