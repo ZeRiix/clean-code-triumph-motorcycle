@@ -4,7 +4,7 @@ export function useFormLogin() {
 		email: {
 			type: "text",
 			label: "Email",
-			defaultValue: "",
+			placeholder: "Email",
 			zodSchema: zod.string()
 				.max(255)
 				.min(2),
@@ -12,10 +12,10 @@ export function useFormLogin() {
 		password: {
 			type: "text",
 			label: "Password",
-			defaultValue: "",
+			placeholder: "Password",
 			zodSchema: zod.string()
 				.max(255)
-				.min(2),
+				.min(8),
 		},
 	});
 
