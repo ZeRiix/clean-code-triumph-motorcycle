@@ -12,8 +12,8 @@ export class ValueObjectError<
 }
 
 export class ValueObject<
-	GenericName extends string,
-	GenericValue extends unknown,
+	GenericName extends string = string,
+	GenericValue extends unknown = unknown,
 > {
 	private constructor(
 		public readonly name: GenericName,
@@ -42,8 +42,8 @@ export class ValueObject<
 }
 
 export interface ValueObjectConstructore<
-	GenericName extends string,
-	GenericZodType extends ZodType,
+	GenericName extends string = string,
+	GenericZodType extends ZodType = ZodType,
 > {
 	name: GenericName;
 	zodSchema: GenericZodType;

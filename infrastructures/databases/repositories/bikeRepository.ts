@@ -67,4 +67,13 @@ export const bikeRepository: BikeRepository = {
 
 		return bikeEntity;
 	},
+
+	async getPage(page, quantityPerPage) {
+		const prismaBikes = await prisma.bike.findMany({
+			skip: page * quantityPerPage,
+			take: quantityPerPage,
+		});
+
+		return prismaBikes.map(bikeMapper);
+	},
 };

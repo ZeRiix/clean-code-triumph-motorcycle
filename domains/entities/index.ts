@@ -5,7 +5,7 @@ export interface StaticDomainEntity<
 }
 
 export abstract class DomainEntity<
-	GenericDefinition extends object,
+	GenericDefinition extends object = object,
 > {
 	public constructor(
 		public readonly definition: GenericDefinition,

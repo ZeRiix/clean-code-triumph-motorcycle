@@ -1,11 +1,16 @@
 import { envs } from "envs";
 import jwt from "jsonwebtoken";
-import { type User } from "@prisma/client";
+import { idType } from "domains/types/commonType";
+import { ZodAccelerator, type ZodSpace } from "@duplojs/core";
+import { typeToZodSchema } from "@utils/typeToZodSchema";
 
-export interface TokenContent {
-	userId: string;
-	role: User["role"];
-}
+const tokenContentSchema = zod.object({
+	userId: typeToZodSchema(idType),
+});
+
+const tokenContentSchemaBuilder = ZodAccelerator.build(tokenContentSchema);
+
+export type TokenContent = ZodSpace.infer<typeof tokenContentSchema>;
 
 export class TokenService {
 	public static make(content: TokenContent): string {
@@ -18,16 +23,14 @@ export class TokenService {
 
 	public static check(token = "") {
 		try {
-			const { content } = jwt.verify(
+			const data = jwt.verify(
 				token,
 				envs.SECRET,
-			) as jwt.JwtPayload;
+			);
 
-			if (!content) {
-				throw new Error("Missing content AccessToken");
-			}
+			const content = tokenContentSchemaBuilder.parse(data);
 
-			return content as TokenContent;
+			return content;
 		} catch {
 			return null;
 		}

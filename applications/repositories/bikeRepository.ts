@@ -4,4 +4,5 @@ import { type BaseRepository } from ".";
 
 export interface BikeRepository extends BaseRepository<typeof BikeEntity> {
 	getByVin(vin: VinBike): Promise<BikeEntity | null>;
+	getPage(page: number, quantityPerPage: number): Promise<BikeEntity[]>;
 }

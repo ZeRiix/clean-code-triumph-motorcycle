@@ -11,7 +11,7 @@ type FlatDefinition<
 
 export function domainEntitySerialize<
 	GenericDomainEntity extends DomainEntity<object>,
->(domainEntity: GenericDomainEntity): FlatDefinition<GenericDomainEntity> {
+>(domainEntity: GenericDomainEntity): FlatDefinition<GenericDomainEntity["definition"]> {
 	return <never>Object.fromEntries(
 		Object.entries(domainEntity.definition)
 			.map(([key, propertyValue]) => <const>[
