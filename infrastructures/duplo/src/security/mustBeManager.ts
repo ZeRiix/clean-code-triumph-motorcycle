@@ -12,3 +12,11 @@ export const mustBeManagerProcess = useBuilder()
 		(pickup) => pickup("tokenContent").userId,
 	)
 	.exportation(["currentManager"]);
+
+export function mustBeManagerBuilder() {
+	return useBuilder()
+		.preflight(
+			mustBeManagerProcess,
+			{ pickup: ["currentManager"] },
+		);
+}
