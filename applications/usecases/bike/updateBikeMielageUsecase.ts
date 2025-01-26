@@ -42,5 +42,7 @@ export class UpdateBikeMielageUsecase {
 				bikeEntity,
 			},
 		);
+
+		return updatedBikeEntity;
 	}
 }
