@@ -11,7 +11,6 @@
   "dependencies": {
     "@duplojs/http-client": "^0.2.3",
     "@heroicons/vue": "^2.2.0",
-    "@vee-validate/zod": "^4.15.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "eslint-plugin-vue": "^9.32.0",
