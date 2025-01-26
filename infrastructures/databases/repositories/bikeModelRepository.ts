@@ -60,4 +60,14 @@ export const bikeModelRepository: BikeModelRepository = {
 
 		return prismaBikeModels.map(bikeModelMapper);
 	},
+
+	async getByModelNameOrThrow(modelName) {
+		const prismaBikeModel = await prisma.bikeModel.findFirstOrThrow({
+			where: {
+				name: modelName,
+			},
+		});
+
+		return bikeModelMapper(prismaBikeModel);
+	},
 };
