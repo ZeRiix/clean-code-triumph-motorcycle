@@ -1,13 +1,12 @@
-import { type FullName, Id } from "domains/types/commonType";
-import { DomainEntity, interfaceDomainEntity } from "..";
+import { interfaceDomainEntity } from "..";
+import { UserDefinition, UserEntity } from "./userEntity";
 
-export interface TechnicianDefinition {
-	id: Id;
-	FullName: FullName;
+export interface TechnicianDefinition extends UserDefinition {
+
 }
 
 @interfaceDomainEntity
-export class TechnicianEntity extends DomainEntity<TechnicianDefinition> {
+export class TechnicianEntity extends UserEntity<TechnicianDefinition> {
 	public static create(definition: TechnicianDefinition) {
 		return new TechnicianEntity({ ...definition });
 	}

@@ -1,10 +1,11 @@
 import { type GetTypeInput } from "@duplojs/core";
-import { type Prisma } from "@prisma/client";
-import { prisma } from "databases/prisma";
+import { userRepository } from "databases/repositories/userRepository";
+import { type UserEntity } from "domains/entities/human/userEntity";
+import { type Email, type Id } from "domains/types/commonType";
 
 interface InputUser {
-	email: string;
-	userId: string;
+	email: Email;
+	userId: Id;
 }
 
 export const inputUserExist = createTypeInput<InputUser>();
@@ -12,15 +13,13 @@ export const inputUserExist = createTypeInput<InputUser>();
 export const userExistCheck = createChecker("userExist")
 	.handler(
 		async({ inputName, value }: GetTypeInput<typeof inputUserExist>, output) => {
-			let where: Prisma.UserFindFirstArgs["where"] = undefined;
+			let user: UserEntity | null = null;
 
 			if (inputName === "email") {
-				where = { email: value };
+				user = await userRepository.findOneByEmail(value);
 			} else if (inputName === "userId") {
-				where = { id: value };
+				user = await userRepository.findOneById(value);
 			}
-
-			const user = await prisma.user.findFirst({ where });
 
 			if (user) {
 				return output("user.exist", user);
@@ -35,7 +34,15 @@ export const iWantUserExist = createPresetChecker(
 	{
 		result: "user.exist",
 		catch: () => new NotFoundHttpResponse("user.notfound"),
-		indexing: "user",
 	},
 	makeResponseContract(NotFoundHttpResponse, "user.notfound"),
 );
+
+export const iWantUserExistByEmail = iWantUserExist
+	.transformInput(inputUserExist.email);
+
+export const iWantUserExistByEmailToLogin = iWantUserExistByEmail
+	.redefineCatch(
+		() => new UnauthorizedHttpResponse("user.wrongIdentifier"),
+		makeResponseContract(UnauthorizedHttpResponse, "user.wrongIdentifier"),
+	);

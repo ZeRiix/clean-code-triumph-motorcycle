@@ -20,10 +20,10 @@ async function submit() {
 			},
 		},
 	)
-		.whenInformation("user.logged", ({ body }) => {
-			tokenRef.value = body.token;
+		.whenInformation("user.logged", ({ body: token }) => {
+			tokenRef.value = token;
 		})
-		.whenError(() => {
+		.whenInformation("user.wrongIdentifier", () => {
 			resetLoginForm();
 			errorToast("Invalid email or password");
 		});

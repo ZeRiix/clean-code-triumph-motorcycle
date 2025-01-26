@@ -9,19 +9,21 @@ type CodegenRoutes = ({
     method: "POST";
     path: "/login";
     body: {
-        email: string;
-        password: string;
+        email: any;
+        password: any;
     };
     response: {
-        code: 404;
-        information: "user.notfound";
+        code: 401;
+        information: "user.wrongIdentifier";
+        body?: undefined;
+    } | {
+        code: 401;
+        information: "user.wrongIdentifier";
         body?: undefined;
     } | {
         code: 200;
         information: "user.logged";
-        body: {
-            token: string;
-        };
+        body: string;
     };
 }) | ({
     method: "GET";

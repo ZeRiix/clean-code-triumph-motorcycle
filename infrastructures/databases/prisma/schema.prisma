@@ -54,7 +54,6 @@ model Client {
 
 model Driver {
     licenseNumber       String          @unique
-    fullName            String
     licenseDateObtained DateTime
     birthDate           DateTime
     status              Boolean
@@ -67,13 +66,11 @@ model Driver {
 }
 
 model Manager {
-    fullName String
     user     User   @relation(fields: [userId], references: [id])
     userId   String @unique
 }
 
 model Technician {
-    fullName             String
     user                 User                   @relation(fields: [userId], references: [id])
     userId               String                 @unique
     Interview            Interview[]
@@ -83,6 +80,7 @@ model Technician {
 model User {
     id         String      @id @default(uuid())
     email      String      @unique
+	fullName   String
     password   String
     technician Technician?
     manager    Manager?
