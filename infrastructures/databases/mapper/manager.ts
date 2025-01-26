@@ -4,7 +4,7 @@ import { fullNameType, idType } from "domains/types/commonType";
 
 export function managerMapper(prismaManager: Manager) {
 	const { userId, fullName } = prismaManager;
-	return ManagerEntity.create({
+	return new ManagerEntity({
 		id: idType.createOrThrow(userId),
 		fullName: fullNameType.createOrThrow(fullName),
 	});

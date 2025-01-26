@@ -20,6 +20,9 @@
 			"@schemas/*": [
 				"duplo/src/schemas/*"
 			],
+			"@prisma": [
+				"databases/prisma/index.ts"
+			],
 		}
 	},
 }

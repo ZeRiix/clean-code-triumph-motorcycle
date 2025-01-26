@@ -15,6 +15,7 @@ mustBeManagerBuilder()
 	.handler(
 		async(pickup) => {
 			const { page } = pickup(["page"]);
+
 			const bikes = await bikeRepository.getPage(page, bikeQuantityPerPage)
 				.then(
 					(bikes) => bikes.map(domainEntitySerialize),

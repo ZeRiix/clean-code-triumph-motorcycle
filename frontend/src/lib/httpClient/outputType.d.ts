@@ -23,6 +23,64 @@ type CodegenRoutes = ({
             token: string;
         };
     };
+}) | ({
+    method: "GET";
+    path: "/bikes";
+    query: {
+        page: number;
+    };
+    headers?: {
+        token?: string | undefined;
+    } | undefined;
+    response: {
+        code: 403;
+        information: "token.invalid";
+        body?: undefined;
+    } | {
+        code: 404;
+        information: "manager.notfoud";
+        body?: undefined;
+    } | {
+        code: 200;
+        information: "bikes.get";
+        body: {
+            vin: string;
+            modelName: string;
+            registration: string;
+            factoryYear: number;
+            mileage: number;
+            purchaseDate: Date;
+            stillInCirculation: boolean;
+            lastInterviewDate: Date;
+        }[];
+    };
+}) | ({
+    method: "GET";
+    path: "/bike-models";
+    query: {
+        page: number;
+    };
+    headers?: {
+        token?: string | undefined;
+    } | undefined;
+    response: {
+        code: 403;
+        information: "token.invalid";
+        body?: undefined;
+    } | {
+        code: 404;
+        information: "manager.notfoud";
+        body?: undefined;
+    } | {
+        code: 200;
+        information: "bikeModels.get";
+        body: {
+            name: string;
+            type: "roadster" | "trail" | "sport" | "touring";
+            interviewIntervalByKillometers: number;
+            interviewIntervalByDay: number;
+        }[];
+    };
 });
 
 export { CodegenRoutes };

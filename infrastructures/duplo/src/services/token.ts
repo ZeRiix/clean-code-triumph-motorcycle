@@ -15,7 +15,9 @@ export type TokenContent = ZodSpace.infer<typeof tokenContentSchema>;
 export class TokenService {
 	public static make(content: TokenContent): string {
 		return jwt.sign(
-			content,
+			{
+				userId: content.userId.value,
+			},
 			envs.SECRET,
 			{ expiresIn: envs.EXPIRES_IN },
 		);

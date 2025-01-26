@@ -42,4 +42,33 @@ export const managerRepository: ManagerRepository = {
 
 		return managerEntity;
 	},
+
+	async findOneById(id) {
+		const prismaManager = await prisma.manager.findFirst({
+			where: {
+				userId: id.value,
+			},
+		});
+
+		if (!prismaManager) {
+			return null;
+		}
+
+		return managerMapper(prismaManager);
+	},
+
+	async findOneByEmail(email) {
+		const prismaUser = await prisma.user.findFirst({
+			where: {
+				email: email.value,
+			},
+			select: { manager: true },
+		});
+
+		if (!prismaUser?.manager) {
+			return null;
+		}
+
+		return managerMapper(prismaUser.manager);
+	},
 };

@@ -80,18 +80,10 @@ model Technician {
     MaintenanceInterview MaintenanceInterview[]
 }
 
-enum UserRole {
-    TECHNICIAN
-    MANAGER
-    DRIVER
-    CLIENT
-}
-
 model User {
     id         String      @id @default(uuid())
     email      String      @unique
     password   String
-    role       UserRole
     technician Technician?
     manager    Manager?
     driver     Driver?

@@ -1,6 +1,4 @@
 import { checkToken } from "@checkers/token";
-import { ValueObjectError } from "domains/types";
-import { idType } from "domains/types/commonType";
 
 export const mustBeConnectedProcess = useBuilder()
 	.createProcess("mustBeConnected")

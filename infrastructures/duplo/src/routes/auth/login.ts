@@ -15,11 +15,10 @@ useBuilder()
 	)
 	.handler(
 		(pickup) => {
-			const { id: userId, role } = pickup("user");
+			const { id: userId } = pickup("user");
 
 			const token = TokenService.make({
 				userId,
-				role,
 			});
 
 			return new OkHttpResponse("user.logged", { token });
