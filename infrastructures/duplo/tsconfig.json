@@ -17,6 +17,9 @@
 			"@utils/*": [
 				"duplo/src/utils/*"
 			],
+			"@schemas/*": [
+				"duplo/src/schemas/*"
+			],
 		}
 	},
 }
