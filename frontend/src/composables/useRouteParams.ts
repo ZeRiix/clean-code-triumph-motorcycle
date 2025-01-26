@@ -8,24 +8,21 @@ export function useRouteParams<
 	const route = useRoute();
 	const router = useRouter();
 	const currentRouteName = route.name;
+	const zodSchema = zod.object(objectSchemas);
 
 	const params = computed(() => {
-		const zodSchema = zod.object(objectSchemas);
-
 		if (currentRouteName !== route.name) {
 			throw new Error("Route change.");
 		}
 
-		const result = zodSchema.safeParse(route.params);
+		const { success, data } = zodSchema.safeParse(route.params);
 
-		if (!result.success) {
-			// eslint-disable-next-line @typescript-eslint/no-floating-promises
-			router.push({ name: routerPageName.LOGIN });
-
+		if (!success) {
+			void router.push({ name: routerPageName.LOGIN });
 			throw new Error("Params is invalid.");
 		}
 
-		return result.data;
+		return data;
 	});
 
 	return params;

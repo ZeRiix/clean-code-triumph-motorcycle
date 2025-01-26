@@ -5,11 +5,9 @@ export const mustBeConnectedProcess = useBuilder()
 	.extract(
 		{
 			headers: {
-				token: zod.string(),
+				token: zod.string().optional(),
 			},
 		},
-		() => new ForbiddenHttpResponse("token.missing"),
-		makeResponseContract(ForbiddenHttpResponse, "token.missing"),
 	)
 	.check(
 		checkToken,

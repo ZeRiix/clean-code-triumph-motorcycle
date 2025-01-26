@@ -16,7 +16,7 @@ export class TokenService {
 		);
 	}
 
-	public static check(token: string) {
+	public static check(token = "") {
 		try {
 			const { content } = jwt.verify(
 				token,

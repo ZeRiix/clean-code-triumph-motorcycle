@@ -8,19 +8,17 @@ export function useRouteQuery<
 	const route = useRoute();
 	const router = useRouter();
 	const currentRouteName = route.name;
+	const zodSchema = zod.object(objectSchemas);
 
 	const params = computed(() => {
-		const zodSchema = zod.object(objectSchemas);
-
-		const { success, data } = zodSchema.safeParse(route.query);
-
 		if (currentRouteName !== route.name) {
 			throw new Error("Route change.");
 		}
 
+		const { success, data } = zodSchema.safeParse(route.query);
+
 		if (!success) {
-			// eslint-disable-next-line @typescript-eslint/no-floating-promises
-			router.push({ name: routerPageName.LOGIN });
+			void router.push({ name: routerPageName.LOGIN });
 			throw new Error("Query is invalid.");
 		}
 
