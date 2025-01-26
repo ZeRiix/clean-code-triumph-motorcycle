@@ -46,8 +46,6 @@ model Client {
     phone     String?
     address   String?
     isPartner Boolean
-    user      User?      @relation(fields: [userId], references: [id])
-    userId    String?    @unique
     Warranty  Warranty[]
     Driver    Driver[]
 }
@@ -57,12 +55,12 @@ model Driver {
     licenseDateObtained DateTime
     birthDate           DateTime
     status              Boolean
-    user                User?           @relation(fields: [userId], references: [id])
-    userId              String?         @unique
+    user                User            @relation(fields: [userId], references: [id])
+    userId              String          @unique
     Incident            Incident[]
     DriverHistory       DriverHistory[]
-    client              Client?         @relation(fields: [clientSiret], references: [siret])
-    clientSiret         String?
+    client              Client          @relation(fields: [clientSiret], references: [siret])
+    clientSiret         String
 }
 
 model Manager {
@@ -85,7 +83,6 @@ model User {
     technician Technician?
     manager    Manager?
     driver     Driver?
-    client     Client?
 }
 
 enum InterviewType {

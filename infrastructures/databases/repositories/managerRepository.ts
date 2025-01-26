@@ -1,6 +1,7 @@
 import { prisma } from "@prisma";
 import { type ManagerRepository } from "applications/repositories/managerRepository";
 import { managerMapper } from "databases/mapper/manager";
+import { userRepository } from "./userRepository";
 
 export const managerRepository: ManagerRepository = {
 	async getAllManager() {
@@ -10,32 +11,31 @@ export const managerRepository: ManagerRepository = {
 	},
 
 	async save(managerEntity) {
+		await userRepository.save(managerEntity);
+
 		const {
 			id,
-			fullName,
 		} = managerEntity.definition;
 
 		const prismaManager = await prisma.manager.findFirst({
 			where: {
 				userId: id.value,
-				fullName: fullName.value,
 			},
 		});
 
 		if (prismaManager) {
-			await prisma.manager.update({
+			await prisma.user.update({
 				where: {
-					userId: id.value,
+					id: id.value,
 				},
 				data: {
-					fullName: fullName.value,
+
 				},
 			});
 		} else {
 			await prisma.manager.create({
 				data: {
 					userId: id.value,
-					fullName: fullName.value,
 				},
 			});
 		}

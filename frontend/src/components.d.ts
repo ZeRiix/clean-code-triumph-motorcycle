@@ -7,6 +7,7 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
+    BigTable: typeof import('./components/BigTable/BigTable.vue')['default']
     CalendarCell: typeof import('./components/ui/calendar/CalendarCell.vue')['default']
     CalendarCellTrigger: typeof import('./components/ui/calendar/CalendarCellTrigger.vue')['default']
     CalendarGrid: typeof import('./components/ui/calendar/CalendarGrid.vue')['default']

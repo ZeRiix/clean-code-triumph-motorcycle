@@ -1,30 +1,35 @@
 import { prisma } from "@prisma";
 import { type DriverRepository } from "applications/repositories/driverRepository";
+import { userRepository } from "./userRepository";
 
 export const driverRepository: DriverRepository = {
 	async save(driverEntity) {
+		await userRepository.save(driverEntity);
+
 		const {
 			licenseDateObtained,
 			licenseNumber,
-			fullName,
 			birthdate,
 			status,
+			id,
+			clientSiret,
 		} = driverEntity.definition;
 
 		const prismaDriver = await prisma.driver.findFirst({
 			where: {
-				licenseNumber: licenseNumber.value,
+				userId: id.value,
 			},
 		});
 
 		if (prismaDriver) {
 			await prisma.driver.update({
 				where: {
-					licenseNumber: licenseNumber.value,
+					userId: id.value,
 				},
 				data: {
+					clientSiret: clientSiret.value,
 					licenseDateObtained: licenseDateObtained.value,
-					fullName: fullName.value,
+					licenseNumber: licenseNumber.value,
 					birthDate: birthdate.value,
 					status,
 				},
@@ -32,9 +37,10 @@ export const driverRepository: DriverRepository = {
 		} else {
 			await prisma.driver.create({
 				data: {
+					userId: id.value,
+					clientSiret: clientSiret.value,
 					licenseDateObtained: licenseDateObtained.value,
 					licenseNumber: licenseNumber.value,
-					fullName: fullName.value,
 					birthDate: birthdate.value,
 					status,
 				},
