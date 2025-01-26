@@ -2,6 +2,7 @@
 import { useFormLogin } from "../composables/useFormLogin";
 
 const { LoginForm, checkLoginForm, resetLoginForm } = useFormLogin();
+const { token: tokenRef } = useToken();
 
 async function submit() {
 	const formFields = await checkLoginForm();
@@ -20,7 +21,7 @@ async function submit() {
 		},
 	)
 		.whenInformation("user.logged", ({ body }) => {
-			setLocalStorageItem("token", body.token);
+			tokenRef.value = body.token;
 		})
 		.whenError(() => {
 			resetLoginForm();

@@ -17,9 +17,9 @@ export const router = createRouter({
 });
 
 router.beforeEach((to, from, next) => {
-	const token = getLocalStorageItem<string>("token");
+	const { token } = useToken();
 
-	if (!token && to.name !== routerPageName.LOGIN) {
+	if (token.value !== null && to.name !== routerPageName.LOGIN) {
 		next({ name: routerPageName.LOGIN });
 	}
 	next();
