@@ -74,4 +74,18 @@ export const clientRepository: ClientRepository = {
 
 		return clientEntity;
 	},
+
+	async findBySiret(siret) {
+		const prismaClient = await prisma.client.findFirst({
+			where: {
+				siret: siret.value,
+			},
+		});
+
+		if (!prismaClient) {
+			return null;
+		}
+
+		return clientMapper(prismaClient);
+	},
 };
