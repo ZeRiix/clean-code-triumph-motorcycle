@@ -26,6 +26,51 @@ type CodegenRoutes = ({
         body: string;
     };
 }) | ({
+    method: "POST";
+    path: "/bikes";
+    body: {
+        vin: any;
+        modelName: string;
+        registration: any;
+        purchaseDate: any;
+        mileage: any;
+        lastInterviewDate: Date;
+        factoryYear: any;
+    };
+    headers?: {
+        token?: string | undefined;
+    } | undefined;
+    response: {
+        code: 403;
+        information: "token.invalid";
+        body?: undefined;
+    } | {
+        code: 404;
+        information: "manager.notfoud";
+        body?: undefined;
+    } | {
+        code: 409;
+        information: "bike.vin.notavailable";
+        body?: undefined;
+    } | {
+        code: 404;
+        information: "bikeModel.notfound";
+        body?: undefined;
+    } | {
+        code: 201;
+        information: "bike.created";
+        body: {
+            vin: string;
+            modelName: string;
+            registration: string;
+            factoryYear: number;
+            mileage: number;
+            purchaseDate: Date;
+            stillInCirculation: boolean;
+            lastInterviewDate: Date;
+        };
+    };
+}) | ({
     method: "GET";
     path: "/bikes";
     query: {
@@ -57,6 +102,48 @@ type CodegenRoutes = ({
         }[];
     };
 }) | ({
+    method: "PATCH";
+    path: "/bikes/{vin}/mielage";
+    body: {
+        mileage: any;
+    };
+    params: {
+        vin: any;
+    };
+    headers?: {
+        token?: string | undefined;
+    } | undefined;
+    response: {
+        code: 403;
+        information: "token.invalid";
+        body?: undefined;
+    } | {
+        code: 404;
+        information: "manager.notfoud";
+        body?: undefined;
+    } | {
+        code: 404;
+        information: "bike.notfound";
+        body?: undefined;
+    } | {
+        code: 422;
+        information: "bike.mileageUpdateFailed";
+        body: string;
+    } | {
+        code: 200;
+        information: "bike.mileageUpdated";
+        body: {
+            vin: string;
+            modelName: string;
+            registration: string;
+            factoryYear: number;
+            mileage: number;
+            purchaseDate: Date;
+            stillInCirculation: boolean;
+            lastInterviewDate: Date;
+        };
+    };
+}) | ({
     method: "GET";
     path: "/bike-models";
     query: {
@@ -82,6 +169,80 @@ type CodegenRoutes = ({
             interviewIntervalByKillometers: number;
             interviewIntervalByDay: number;
         }[];
+    };
+}) | ({
+    method: "POST";
+    path: "/clients/{clientSiret}/warranty";
+    body: {
+        startDate: Date;
+        endDate: Date;
+        description: string | null;
+    };
+    params: {
+        clientSiret: any;
+    };
+    headers?: {
+        token?: string | undefined;
+    } | undefined;
+    response: {
+        code: 403;
+        information: "token.invalid";
+        body?: undefined;
+    } | {
+        code: 404;
+        information: "manager.notfoud";
+        body?: undefined;
+    } | {
+        code: 404;
+        information: "client.notfound";
+        body?: undefined;
+    } | {
+        code: 201;
+        information: "warranty.created";
+        body: {
+            clientSiret: string;
+            startDate: Date;
+            endDate: Date;
+            description: string | null;
+        };
+    };
+}) | ({
+    method: "POST";
+    path: "/spare-part/{sparePartReference}/command";
+    body: {
+        quantity: any;
+        unitPriceTTC: any;
+        dayDeliveryDelay: any;
+    };
+    params: {
+        sparePartReference: any;
+    };
+    headers?: {
+        token?: string | undefined;
+    } | undefined;
+    response: {
+        code: 403;
+        information: "token.invalid";
+        body?: undefined;
+    } | {
+        code: 404;
+        information: "manager.notfoud";
+        body?: undefined;
+    } | {
+        code: 404;
+        information: "sparePart.notfound";
+        body?: undefined;
+    } | {
+        code: 201;
+        information: "sparePartCommanded.created";
+        body: {
+            id: string;
+            orderDate: Date;
+            reference: string;
+            unitPriceTTC: number;
+            quantity: number;
+            dayDeliveryDelay: number;
+        };
     };
 });
 

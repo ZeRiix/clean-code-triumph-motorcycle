@@ -3,7 +3,7 @@ import type { CodegenRoutes } from "./outputType";
 import { router } from "@/router";
 import { routerPageName } from "@/router/routerPageName";
 
-type HttpClientRoute = TransformCodegenRouteToHttpClientRoute<CodegenRoutes>;
+export type HttpClientRoute = TransformCodegenRouteToHttpClientRoute<CodegenRoutes>;
 
 export const httpClient = new HttpClient<HttpClientRoute>({
 	baseUrl: `http://${location.hostname}:1506`,

@@ -6,15 +6,7 @@ import { sparePartMapper } from "databases/mapper/sparePart";
 const inverteNumber = -1;
 
 export const sparePartRepository: SparePartRepository = {
-	async getBySparePartChangedOrThrow(sparePartChangedEntity) {
-		const { reference } = sparePartChangedEntity.definition;
-
-		const primsaSparePart = await prisma.sparePart.findFirstOrThrow({
-			where: {
-				reference: reference.value,
-			},
-		});
-
+	async computeAvailableQuantity(reference) {
 		const [{ quantity } = { quantity: 0 }] = await SparePartModel.aggregate<{ quantity: number }>([
 			{
 				$match: {
@@ -44,6 +36,19 @@ export const sparePartRepository: SparePartRepository = {
 				},
 			},
 		]);
+
+		return quantity;
+	},
+	async getBySparePartChangedOrThrow(sparePartChangedEntity) {
+		const { reference } = sparePartChangedEntity.definition;
+
+		const primsaSparePart = await prisma.sparePart.findFirstOrThrow({
+			where: {
+				reference: reference.value,
+			},
+		});
+
+		const quantity = await sparePartRepository.computeAvailableQuantity(reference);
 
 		return sparePartMapper(primsaSparePart, quantity);
 	},
@@ -78,5 +83,21 @@ export const sparePartRepository: SparePartRepository = {
 		}
 
 		return sparePartEntity;
+	},
+
+	async findOneByReference(reference) {
+		const primsaSparePart = await prisma.sparePart.findFirst({
+			where: {
+				reference: reference.value,
+			},
+		});
+
+		if (!primsaSparePart) {
+			return null;
+		}
+
+		const quantity = await sparePartRepository.computeAvailableQuantity(reference);
+
+		return sparePartMapper(primsaSparePart, quantity);
 	},
 };

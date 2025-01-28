@@ -1,4 +1,4 @@
-import zodSchema from "@zodyac/zod-mongoose";
+import { zodSchema } from "@zodyac/zod-mongoose";
 import { idType, positiveNumberType } from "domains/types/commonType";
 import { partReferenceType, unitPriceType } from "domains/types/sparePartType";
 import { model } from "mongoose";
@@ -12,15 +12,15 @@ const sparePartBase = z.object({
 
 export const sparePartSchema = z.union([
 	sparePartBase.extend({
-		type: z.literal("inStock"),
+		type: z.enum(["inStock"]),
 	}),
 	sparePartBase.extend({
 		id: idType.zodSchema,
-		type: z.literal("used"),
+		type: z.enum(["used"]),
 		maintenanceInterviewIssue: idType.zodSchema,
 	}),
 	sparePartBase.extend({
-		type: z.literal("commanded"),
+		type: z.enum(["commanded"]),
 		id: idType.zodSchema,
 		unitPriceTTC: unitPriceType.zodSchema,
 		dayDeliveryDelay: positiveNumberType.zodSchema,

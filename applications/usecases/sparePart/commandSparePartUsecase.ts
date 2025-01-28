@@ -1,15 +1,17 @@
-import { type SparePartRepository } from "applications/repositories/sparePartRepository";
+import { type SparePartCommandedRepository } from "applications/repositories/sparePartCommandedRepository";
+import { type SparePartEntity } from "domains/entities/sparePart";
 import { SparePartCommandedEntity, type SparePartCommandedDefinition } from "domains/entities/sparePart/sparePartCommandedEntity";
 
 interface Dependences {
-	sparePartCommandedRepository: SparePartRepository;
+	sparePartCommandedRepository: SparePartCommandedRepository;
 }
 
 interface Params {
 	sparePartComandedParams: Pick<
 		SparePartCommandedDefinition,
-		"reference" | "deliveryDelay" | "quantity" | "unitPriceTTC"
+		"quantity" | "unitPriceTTC" | "dayDeliveryDelay" | "id"
 	>;
+	sparePartEntity: SparePartEntity;
 }
 
 export class CommandSparePartUsecase {
@@ -17,8 +19,11 @@ export class CommandSparePartUsecase {
 		dependences: Dependences,
 		params: Params,
 	) {
+		const { sparePartComandedParams, sparePartEntity } = params;
+
 		const sparePartCommanded = SparePartCommandedEntity.create({
-			...params.sparePartComandedParams,
+			...sparePartComandedParams,
+			reference: sparePartEntity.definition.reference,
 		});
 
 		return dependences.sparePartCommandedRepository.save(sparePartCommanded);

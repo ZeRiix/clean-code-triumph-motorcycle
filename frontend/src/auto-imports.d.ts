@@ -94,6 +94,9 @@ declare global {
   export type { Component, ComponentPublicInstance, ComputedRef, DirectiveBinding, ExtractDefaultPropTypes, ExtractPropTypes, ExtractPublicPropTypes, InjectionKey, PropType, Ref, MaybeRef, MaybeRefOrGetter, VNode, WritableComputedRef } from 'vue'
   import('vue')
   // @ts-ignore
+  export type { HttpClientRoute } from './lib/httpClient/index'
+  import('./lib/httpClient/index')
+  // @ts-ignore
   export type { CodegenRoutes } from './lib/httpClient/outputType.d'
   import('./lib/httpClient/outputType.d')
   // @ts-ignore

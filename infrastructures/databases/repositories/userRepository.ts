@@ -1,6 +1,6 @@
 import { prisma } from "@prisma";
 import { type UserRepository } from "applications/repositories/userRepository";
-import { userMapper } from "databases/mapper/userMapper";
+import { userMapper } from "databases/mapper/user";
 
 export const userRepository: UserRepository = {
 	async save(userEntity) {

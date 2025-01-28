@@ -5,9 +5,13 @@ import { userRepository } from "./userRepository";
 
 export const managerRepository: ManagerRepository = {
 	async getAllManager() {
-		const prismaManagers = await prisma.manager.findMany();
+		const prismaManagers = await prisma.manager.findMany({
+			include: {
+				user: true,
+			},
+		});
 
-		return prismaManagers.map((prismaManager) => managerMapper(prismaManager));
+		return prismaManagers.map(({ user }) => managerMapper(user));
 	},
 
 	async save(managerEntity) {
@@ -48,13 +52,16 @@ export const managerRepository: ManagerRepository = {
 			where: {
 				userId: id.value,
 			},
+			include: {
+				user: true,
+			},
 		});
 
 		if (!prismaManager) {
 			return null;
 		}
 
-		return managerMapper(prismaManager);
+		return managerMapper(prismaManager.user);
 	},
 
 	async findOneByEmail(email) {
@@ -62,13 +69,15 @@ export const managerRepository: ManagerRepository = {
 			where: {
 				email: email.value,
 			},
-			select: { manager: true },
+			include: {
+				manager: true,
+			},
 		});
 
 		if (!prismaUser?.manager) {
 			return null;
 		}
 
-		return managerMapper(prismaUser.manager);
+		return managerMapper(prismaUser);
 	},
 };

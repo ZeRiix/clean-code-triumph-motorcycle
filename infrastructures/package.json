@@ -14,12 +14,13 @@
 		"@duplojs/http-client": "^0.2.3",
 		"@duplojs/node": "0.3.2",
 		"@prisma/client": "^6.2.1",
-		"@zodyac/zod-mongoose": "^3.2.0",
+		"@zodyac/zod-mongoose": "3.2.0",
 		"dotenv": "^16.4.7",
 		"fastify": "^5.2.1",
 		"jsonwebtoken": "^9.0.2",
 		"mongoose": "^8.9.5",
-		"prisma": "^6.2.1"
+		"prisma": "^6.2.1",
+		"uuidv7": "^1.0.2"
 	},
 	"devDependencies": {
 		"@duplojs/types-codegen": "^0.3.2",
