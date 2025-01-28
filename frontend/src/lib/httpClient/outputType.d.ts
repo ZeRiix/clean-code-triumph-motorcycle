@@ -9,8 +9,8 @@ type CodegenRoutes = ({
     method: "POST";
     path: "/login";
     body: {
-        email: any;
-        password: any;
+        email: string;
+        password: string;
     };
     response: {
         code: 401;
@@ -29,13 +29,16 @@ type CodegenRoutes = ({
     method: "POST";
     path: "/bikes";
     body: {
-        vin: any;
+        vin: string;
         modelName: string;
-        registration: any;
-        purchaseDate: any;
-        mileage: any;
+        registration: string;
+        purchaseDate: [
+            Date,
+            number
+        ];
+        mileage: number;
         lastInterviewDate: Date;
-        factoryYear: any;
+        factoryYear: number;
     };
     headers?: {
         token?: string | undefined;
@@ -105,10 +108,10 @@ type CodegenRoutes = ({
     method: "PATCH";
     path: "/bikes/{vin}/mielage";
     body: {
-        mileage: any;
+        mileage: number;
     };
     params: {
-        vin: any;
+        vin: string;
     };
     headers?: {
         token?: string | undefined;
@@ -179,7 +182,7 @@ type CodegenRoutes = ({
         description: string | null;
     };
     params: {
-        clientSiret: any;
+        clientSiret: string;
     };
     headers?: {
         token?: string | undefined;
@@ -210,12 +213,12 @@ type CodegenRoutes = ({
     method: "POST";
     path: "/spare-part/{sparePartReference}/command";
     body: {
-        quantity: any;
-        unitPriceTTC: any;
-        dayDeliveryDelay: any;
+        quantity: number;
+        unitPriceTTC: number;
+        dayDeliveryDelay: number;
     };
     params: {
-        sparePartReference: any;
+        sparePartReference: string;
     };
     headers?: {
         token?: string | undefined;

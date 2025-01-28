@@ -15,7 +15,7 @@ export class ValueObject<
 	GenericName extends string = string,
 	GenericValue extends unknown = unknown,
 > {
-	private constructor(
+	public constructor(
 		public readonly name: GenericName,
 		public readonly value: GenericValue,
 	) {}
