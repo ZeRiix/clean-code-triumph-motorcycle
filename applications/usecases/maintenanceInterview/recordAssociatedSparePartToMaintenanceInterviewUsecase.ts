@@ -8,7 +8,7 @@ interface Dependences {
 interface Params {
 	sparePartChanged: Pick<
 		SparePartChangedDefinition,
-		"quantity" | "sparePartReference" | "maintenanceInterviewIssue"
+		"quantity" | "reference" | "maintenanceInterviewIssue" | "id"
 	>;
 }
 

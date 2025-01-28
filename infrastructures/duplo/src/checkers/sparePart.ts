@@ -37,3 +37,15 @@ export const iWantSparePartExist = createPresetChecker(
 
 export const iWantSparePartExistByReference = iWantSparePartExist
 	.transformInput(sparePartExistInput.reference);
+
+export const iWantSparePartNotExist = createPresetChecker(
+	sparePartExistCheck,
+	{
+		result: "sparePart.notfound",
+		catch: () => new ConflictHttpResponse("sparePart.alreadyExist"),
+	},
+	makeResponseContract(ConflictHttpResponse, "sparePart.alreadyExist"),
+);
+
+export const iWantSparePartReferenceIsAvailable = iWantSparePartNotExist
+	.transformInput(sparePartExistInput.reference);
