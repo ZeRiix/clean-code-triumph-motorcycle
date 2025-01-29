@@ -1,7 +1,7 @@
 export function useToken() {
 	const { item: token } = useLocalStorageItem(
 		"token",
-		zod.string(),
+		zod.string().nullable(),
 	);
 
 	return {
