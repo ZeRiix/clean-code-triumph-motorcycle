@@ -26,7 +26,7 @@ defineProps<{
 				class="flex flex-col items-center"
 			>
 				<RouterLink
-					:to="item.path"
+					:to="{ path: item.path }"
 					class="w-full"
 				>
 					<div class="w-full py-4 px-6 bg-black text-white font-semibold rounded-md shadow-md hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black flex flex-col items-center">

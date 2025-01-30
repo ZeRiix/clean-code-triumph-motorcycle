@@ -1,7 +1,9 @@
 import { bikeSchema } from "@schemas/bike";
 import { mustBeManagerBuilder } from "@security/mustBeManager";
 import { domainEntitySerialize } from "@utils/domainEntitySerialize";
+import { typeToZodSchema } from "@utils/typeToZodSchema";
 import { bikeRepository } from "databases/repositories/bikeRepository";
+import { vinBikeType } from "domains/types/bikeType";
 
 const bikeQuantityPerPage = 10;
 
@@ -10,6 +12,7 @@ mustBeManagerBuilder()
 	.extract({
 		query: {
 			page: zod.coerce.number(),
+			vin: typeToZodSchema(vinBikeType).optional(),
 		},
 	})
 	.handler(

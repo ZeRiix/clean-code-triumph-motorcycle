@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
 import auth from "@/domains/auth/router";
+import bike from "@/domains/bike/router";
 import navigation, { notFound } from "@/domains/navigation/router";
 import { routerPageName } from "./routerPageName";
 
@@ -12,6 +13,7 @@ export const router = createRouter({
 			children: [
 				...navigation(),
 				...auth(),
+				...bike(),
 			],
 		},
 		notFound(),

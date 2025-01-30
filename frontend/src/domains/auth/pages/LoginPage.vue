@@ -1,5 +1,7 @@
 <script setup lang="ts">
+import { routerPageName } from "@/router/routerPageName";
 import { useFormLogin } from "../composables/useFormLogin";
+import { router } from "@/router";
 
 const { LoginForm, checkLoginForm, resetLoginForm } = useFormLogin();
 const { token: tokenRef } = useToken();
@@ -20,8 +22,9 @@ async function submit() {
 			},
 		},
 	)
-		.whenInformation("user.logged", ({ body: token }) => {
+		.whenInformation("user.logged", async({ body: token }) => {
 			tokenRef.value = token;
+			await router.push({ name: routerPageName.HOME });
 		})
 		.whenInformation("user.wrongIdentifier", () => {
 			resetLoginForm();

@@ -78,6 +78,7 @@ type CodegenRoutes = ({
     path: "/bikes";
     query: {
         page: number;
+        vin?: string | undefined;
     };
     headers?: {
         token?: string | undefined;
@@ -245,6 +246,41 @@ type CodegenRoutes = ({
             unitPriceTTC: number;
             quantity: number;
             dayDeliveryDelay: number;
+        };
+    };
+}) | ({
+    method: "POST";
+    path: "/spare-part";
+    body: {
+        reference: string;
+        name: string;
+        reorderLevel: number;
+        facturedPrice: number;
+    };
+    headers?: {
+        token?: string | undefined;
+    } | undefined;
+    response: {
+        code: 403;
+        information: "token.invalid";
+        body?: undefined;
+    } | {
+        code: 404;
+        information: "manager.notfoud";
+        body?: undefined;
+    } | {
+        code: 409;
+        information: "sparePart.alreadyExist";
+        body?: undefined;
+    } | {
+        code: 201;
+        information: "sparePart.created";
+        body: {
+            reference: string;
+            name: string;
+            stock: number;
+            facturedPrice: number;
+            reorderLevel: number;
         };
     };
 });

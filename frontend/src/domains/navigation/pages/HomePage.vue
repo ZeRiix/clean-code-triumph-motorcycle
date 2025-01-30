@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { HomeIcon, UserIcon, CogIcon, ChartBarIcon } from "@heroicons/vue/24/solid";
 import NaviguateSection from "../components/NaviguateSection.vue";
+import { BikeIcon } from "lucide-vue-next";
 
 const sections = {
 	"Main Section": [
@@ -10,9 +11,9 @@ const sections = {
 			icon: HomeIcon,
 		},
 		{
-			name: "Profile",
-			path: "/profile",
-			icon: UserIcon,
+			name: "Bike",
+			path: "/bikes",
+			icon: BikeIcon,
 		},
 		{
 			name: "Settings",
@@ -21,7 +22,7 @@ const sections = {
 		},
 		{
 			name: "Reports",
-			path: "/reports",
+			path: "reports",
 			icon: ChartBarIcon,
 		},
 	],
