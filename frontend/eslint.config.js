@@ -44,6 +44,7 @@ export default [
 			"@typescript-eslint/no-unsafe-member-access": "off",
 			"@typescript-eslint/no-unsafe-unary-minus": "off",
 			"vue/require-explicit-emits": "off",
+			"@typescript-eslint/no-magic-numbers": "off",
 		},
 		files: ["src/**/*.vue", "src/**/*.ts"],
 	},

@@ -5,7 +5,8 @@
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
 generator client {
-    provider = "prisma-client-js"
+    provider      = "prisma-client-js"
+    binaryTargets = ["native", "linux-arm64-openssl-3.0.x"]
 }
 
 datasource db {
@@ -64,8 +65,8 @@ model Driver {
 }
 
 model Manager {
-    user     User   @relation(fields: [userId], references: [id])
-    userId   String @unique
+    user   User   @relation(fields: [userId], references: [id])
+    userId String @unique
 }
 
 model Technician {
@@ -78,7 +79,7 @@ model Technician {
 model User {
     id         String      @id @default(uuid())
     email      String      @unique
-	fullName   String
+    fullName   String
     password   String
     technician Technician?
     manager    Manager?

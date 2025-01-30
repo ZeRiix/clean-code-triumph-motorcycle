@@ -21,7 +21,7 @@ useBuilder()
 		({ pickup, dropper }) => {
 			const { user, body } = pickup(["user", "body"]);
 
-			if (user.definition.password !== body.password) {
+			if (user.definition.password.value !== body.password.value) {
 				return new UnauthorizedHttpResponse("user.wrongIdentifier");
 			}
 

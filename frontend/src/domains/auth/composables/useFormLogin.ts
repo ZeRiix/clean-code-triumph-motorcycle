@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-magic-numbers */
+
 export function useFormLogin() {
 	const { Form, checkForm, resetForm } = useFormBuilder({
 		email: {
@@ -15,7 +15,7 @@ export function useFormLogin() {
 			placeholder: "Password",
 			zodSchema: zod.string()
 				.max(255)
-				.min(8),
+				.min(2),
 		},
 	});
 
