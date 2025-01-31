@@ -12,7 +12,8 @@
 		"generate:types:watch": "npm -w infrastructures run generate:types:watch",
 		"fixture": "npm -w infrastructures run fixture",
 		"lint": "eslint .",
-		"lint:fix": "eslint --fix ."
+		"lint:fix": "eslint --fix .",
+		"dev:fastify": "npm -w infrastructures run dev:fastify"
 	},
 	"workspaces": [
 		"applications",

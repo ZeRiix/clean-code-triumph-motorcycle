@@ -175,6 +175,33 @@ type CodegenRoutes = ({
         }[];
     };
 }) | ({
+    method: "GET";
+    path: "/clients";
+    query: {
+        page: number;
+    };
+    headers?: {
+        token?: string | undefined;
+    } | undefined;
+    response: {
+        code: 403;
+        information: "token.invalid";
+        body?: undefined;
+    } | {
+        code: 404;
+        information: "manager.notfoud";
+        body?: undefined;
+    } | {
+        code: 200;
+        information: "clients.get";
+        body: {
+            siret: string;
+            phone: string | null;
+            address: string | null;
+            isPartner: boolean;
+        }[];
+    };
+}) | ({
     method: "POST";
     path: "/clients/{clientSiret}/warranty";
     body: {

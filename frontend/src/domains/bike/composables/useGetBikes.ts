@@ -1,4 +1,3 @@
-
 import type { HttpClientRoute } from "@/lib/httpClient";
 import type { FindHttpClientRoute, FindHttpClientRouteResponse } from "@duplojs/http-client";
 
@@ -16,7 +15,7 @@ export function useGetBikes() {
 			"/bikes",
 			{
 				query: {
-					page: String(page),
+					page: page.toString(),
 					vin,
 				},
 			},

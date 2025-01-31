@@ -16,7 +16,7 @@ export function useGetBikeModels() {
 			"/bike-models",
 			{
 				query: {
-					page: String(page),
+					page: page.toString(),
 				},
 			},
 		).whenInformation("bikeModels.get", ({ body }) => {

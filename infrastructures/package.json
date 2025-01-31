@@ -7,7 +7,8 @@
 		"migrate": "prisma migrate dev",
 		"generate:types": "cd duplo && duplojs-types-codegen --import @duplojs/node/globals --include 'src/routes/**/*.ts' --output ../../frontend/src/lib/httpClient/outputType.d.ts",
 		"generate:types:watch": "cd duplo && duplojs-types-codegen --watch --import @duplojs/node/globals --include 'src/routes/**/*.ts' --output ../../frontend/src/lib/httpClient/outputType.d.ts",
-		"fixture": "tsx databases/fixtures"
+		"fixture": "tsx databases/fixtures",
+		"dev:fastify": "cd fastify && tsx --watch main.ts"
 	},
 	"dependencies": {
 		"@duplojs/core": "0.23.1",

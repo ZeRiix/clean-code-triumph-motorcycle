@@ -5,3 +5,4 @@ import "./bike/update";
 import "./sparePart/command";
 import "./client/warranty";
 import "./bikeModel";
+import "./client";
