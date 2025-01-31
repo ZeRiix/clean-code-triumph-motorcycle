@@ -310,6 +310,34 @@ type CodegenRoutes = ({
             reorderLevel: number;
         };
     };
+}) | ({
+    method: "GET";
+    path: "/spare-part";
+    query: {
+        page: number;
+    };
+    headers?: {
+        token?: string | undefined;
+    } | undefined;
+    response: {
+        code: 403;
+        information: "token.invalid";
+        body?: undefined;
+    } | {
+        code: 404;
+        information: "manager.notfoud";
+        body?: undefined;
+    } | {
+        code: 200;
+        information: "sparePart.found";
+        body: {
+            reference: string;
+            name: string;
+            stock: number;
+            facturedPrice: number;
+            reorderLevel: number;
+        }[];
+    };
 });
 
 export { CodegenRoutes };

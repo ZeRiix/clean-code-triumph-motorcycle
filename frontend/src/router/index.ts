@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import auth from "@/domains/auth/router";
 import bike from "@/domains/bike/router";
 import bikeModel from "@/domains/bikeModel/router";
+import sparePart from "@/domains/sparePart/router";
 import client from "@/domains/client/router";
 import navigation, { notFound } from "@/domains/navigation/router";
 import { routerPageName } from "./routerPageName";
@@ -18,6 +19,7 @@ export const router = createRouter({
 				...bike(),
 				...bikeModel(),
 				...client(),
+				...sparePart(),
 			],
 		},
 		notFound(),

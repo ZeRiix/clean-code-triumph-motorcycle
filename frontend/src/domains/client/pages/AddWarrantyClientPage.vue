@@ -7,9 +7,7 @@ import { router } from "@/router";
 const params = useRouteParams({
 	siret: zod.string(),
 });
-const { ClientWarantyForm, clientWarantyValues, checkClientWarantyForm } = useFormClientWarranty();
-
-clientWarantyValues.clientSiret.value = params.value.siret;
+const { ClientWarantyForm, checkClientWarantyForm } = useFormClientWarranty(params.value.siret);
 
 async function submit() {
 	const formFields = await checkClientWarantyForm();

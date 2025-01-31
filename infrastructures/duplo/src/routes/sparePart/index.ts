@@ -1,4 +1,5 @@
 import { iWantSparePartReferenceIsAvailable } from "@checkers/sparePart";
+import { prisma } from "@prisma";
 import { sparePartRepository } from "@repositories/sparePartRepository";
 import { sparePartSchema } from "@schemas/sparePart";
 import { mustBeManagerBuilder } from "@security/mustBeManager";
@@ -36,4 +37,40 @@ mustBeManagerBuilder()
 			return new CreatedHttpResponse("sparePart.created", domainEntitySerialize(sparePart));
 		},
 		makeResponseContract(CreatedHttpResponse, "sparePart.created", sparePartSchema),
+	);
+
+const maxSparePartPerPage = 10;
+
+mustBeManagerBuilder()
+	.createRoute("GET", "/spare-part")
+	.extract({
+		query: zod.object({
+			page: zod.coerce.number(),
+		}),
+	})
+	.handler(
+		async(pickup) => {
+			const { query } = pickup(["query"]);
+
+			const spareParts = await prisma.sparePart.findMany({
+				skip: query.page * maxSparePartPerPage,
+				take: maxSparePartPerPage,
+			});
+
+			const result = await Promise.all(
+				spareParts.map(async(sparePart) => {
+					const stock = await sparePartRepository.computeAvailableQuantity(
+						partReferenceType.createOrThrow(sparePart.reference),
+					);
+					return {
+						...sparePart,
+						facturedPrice: Number(sparePart.facturedPrice),
+						stock,
+					};
+				}),
+			);
+
+			return new OkHttpResponse("sparePart.found", result);
+		},
+		makeResponseContract(OkHttpResponse, "sparePart.found", sparePartSchema.array()),
 	);

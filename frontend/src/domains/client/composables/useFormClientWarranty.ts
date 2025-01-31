@@ -1,10 +1,11 @@
-export function useFormClientWarranty() {
+export function useFormClientWarranty(clientSiret?: string) {
 	const { Form, checkForm, resetForm, values } = useFormBuilder({
 		clientSiret: {
 			type: "text",
 			placeholder: "Client Siret",
 			zodSchema: zod.string().length(14),
 			label: "Client Siret",
+			defaultValue: clientSiret,
 		},
 		startDate: {
 			type: "date",
