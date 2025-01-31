@@ -8,7 +8,7 @@ interface Dependences {
 interface Params {
 	interview: Pick<
 		InterviewDefinition,
-		"costTTC" | "date" | "notes" | "type" | "technicianId"
+		"costTTC" | "date" | "notes" | "type" | "technicianId" | "id"
 	>;
 }
 

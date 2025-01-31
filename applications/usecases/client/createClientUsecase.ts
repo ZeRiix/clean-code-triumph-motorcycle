@@ -8,11 +8,11 @@ interface Dependences {
 interface Params {
 	client: Pick<
 		ClientDefinition,
-		"siret" | "email" | "phone" | "address"
+		"siret" | "phone" | "address"
 	>;
 }
 
-export class CreateClient {
+export class CreateClientUsecase {
 	public static execute(
 		dependences: Dependences,
 		params: Params,

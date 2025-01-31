@@ -1,4 +1,5 @@
 import { type DriverRepository } from "applications/repositories/driverRepository";
+import { type ClientEntity } from "domains/entities/clientEntity";
 import { type DriverDefinition, DriverEntity } from "domains/entities/human/driverEntity";
 
 interface Dependences {
@@ -8,8 +9,9 @@ interface Dependences {
 interface Params {
 	driver: Pick<
 		DriverDefinition,
-		"fullName" | "birthdate" | "licenseDateObtained" | "licenseNumber"
+		"fullName" | "birthdate" | "licenseDateObtained" | "licenseNumber" | "email" | "password" | "id"
 	>;
+	clientEntity: ClientEntity;
 }
 
 export class CreateDriver {
@@ -19,6 +21,7 @@ export class CreateDriver {
 	) {
 		const driver = DriverEntity.create({
 			...params.driver,
+			clientSiret: params.clientEntity.definition.siret,
 		});
 
 		return dependences.driverRepository.save(driver);

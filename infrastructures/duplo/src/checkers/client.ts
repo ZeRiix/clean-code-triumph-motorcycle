@@ -37,3 +37,13 @@ export const iWantClientExist = createPresetChecker(
 
 export const iWantClientExistBySiret = iWantClientExist
 	.transformInput(clientExistInput.siret);
+
+export const iWantClientSiretIsAvailable = createPresetChecker(
+	clientExistCheck,
+	{
+		result: "client.notfound",
+		catch: () => new ConflictHttpResponse("client.siret.alreadyUser"),
+		transformInput: clientExistInput.siret,
+	},
+	makeResponseContract(ConflictHttpResponse, "client.siret.alreadyUser"),
+);

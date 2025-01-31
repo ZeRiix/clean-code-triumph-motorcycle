@@ -9,7 +9,7 @@ interface Dependences {
 interface Params {
 	managerNotification: Pick<
 		ManagerNotificationDefinition,
-		"message" | "priority"
+		"message" | "priority" | "id"
 	>;
 	managerEntity: ManagerEntity;
 }

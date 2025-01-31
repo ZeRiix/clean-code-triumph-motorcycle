@@ -23,7 +23,7 @@ export class CreateTryBikeForDriverUsecase {
 			...params.driverHistoryParams,
 			licenseNumberDriver: params.driverEntity.definition.licenseNumber,
 			bikeVin: params.bikeEntity.definition.vin,
-			tryOrLocation: "try",
+			try: false,
 		});
 
 		return dependences.driverHistoryRepository.save(driverHistory);
