@@ -96,9 +96,6 @@ export function useFormBike(vin?: string) {
 			values.mileage.value = bike.mileage;
 			values.lastInterviewDate.value = bike.lastInterviewDate;
 			values.factoryYear.value = bike.factoryYear;
-		}).whenInformation("manager.notfoud", async() => {
-			errorToast("You are not edit this bike");
-			await router.push({ name: routerPageName.HOME });
 		});
 	}
 

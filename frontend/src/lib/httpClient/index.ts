@@ -28,3 +28,12 @@ httpClient.hooks.add({
 		void router.push({ name: routerPageName.LOGIN });
 	},
 });
+
+httpClient.hooks.add({
+	type: "information",
+	value: "manager.notfoud",
+	callback: () => {
+		errorToast("You are not a manager");
+		void router.push({ name: routerPageName.HOME });
+	},
+});

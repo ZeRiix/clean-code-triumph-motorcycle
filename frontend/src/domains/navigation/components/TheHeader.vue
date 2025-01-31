@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { routerPageName } from "@/router/routerPageName";
 
 interface Link {
 	url: string;
@@ -18,11 +19,13 @@ const links: Link[] = [
 	<header class="bg-white shadow-md">
 		<div class="container mx-auto px-4 py-4 flex items-center justify-between">
 			<div class="flex items-center">
-				<img
-					src="/logo.png"
-					alt="logo"
-					class="h-10 mr-6"
-				>
+				<RouterLink :to="{ name: routerPageName.HOME }">
+					<img
+						src="/logo.png"
+						alt="logo"
+						class="h-10 mr-6"
+					>
+				</RouterLink>
 
 				<nav class="flex space-x-4">
 					<RouterLink

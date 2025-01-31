@@ -35,10 +35,6 @@ async function submit() {
 		})
 		.whenInformation("bike.notfound", () => {
 			errorToast("Bike not found");
-		})
-		.whenInformation("manager.notfoud", async() => {
-			errorToast("You are not a manager");
-			await router.push({ name: routerPageName.HOME });
 		});
 }
 

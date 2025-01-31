@@ -22,8 +22,6 @@ export function useGetBikes() {
 			},
 		).whenInformation("bikes.get", ({ body }) => {
 			bikes.value = body;
-		}).whenError(() => {
-			errorToast("Failed to get bikes");
 		});
 	}
 

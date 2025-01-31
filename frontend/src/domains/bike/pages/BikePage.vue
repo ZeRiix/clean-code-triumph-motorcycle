@@ -1,11 +1,9 @@
 <script setup lang="ts">
-import BigTable from "@/components/BigTable/BigTable.vue";
 import { type Bike, useGetBikes } from "../composables/useGetBikes";
 import { useFormBike } from "../composables/useFormBike";
 import { PencilSquareIcon } from "@heroicons/vue/24/solid";
 import { PlusIcon } from "lucide-vue-next";
 import { routerPageName } from "@/router/routerPageName";
-import { router } from "@/router";
 
 const currentPage = ref(0);
 const showForm = ref(false);
@@ -101,10 +99,6 @@ async function submitCreate() {
 		})
 		.whenInformation("bikeModel.notfound", () => {
 			errorToast("Model not found");
-		})
-		.whenInformation("manager.notfoud", async() => {
-			errorToast("You are not a manager");
-			await router.push({ name: routerPageName.HOME });
 		});
 }
 
